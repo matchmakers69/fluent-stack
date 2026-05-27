@@ -29,6 +29,7 @@ No test runner is configured yet.
 - **TypeScript**
 - **Tailwind CSS v4** (configured via PostCSS, not a config file)
 - **next-intl** (latest v4) — i18n, pl default, en secondary
+- **Typography**: Outfit (body), Plus Jakarta Sans (headings), Geist Mono (code) — loaded via `src/lib/fonts.ts`, fluid sizing via clamp() in globals.css
 
 ## Responsive Design
 
@@ -44,6 +45,6 @@ All components must be built mobile-first. Define base styles for mobile, then o
 
 This is an App Router project. All routes live under `src/app/` following Next.js file-system routing conventions — `page.tsx` for routes, `layout.tsx` for shared layouts, `loading.tsx`/`error.tsx` for async boundaries.
 
-The root layout (`src/app/layout.tsx`) loads Geist fonts as CSS variables (`--font-geist-sans`, `--font-geist-mono`) and sets `<body>` as a flex column spanning full viewport height.
+The locale layout (`src/app/[locale]/layout.tsx`) applies font CSS variables via `fontsClassName` from `src/lib/fonts.ts` and sets `<body>` as a flex column spanning full viewport height.
 
 Tailwind v4 uses `@import "tailwindcss"` in `globals.css` rather than `@tailwind` directives — no `tailwind.config.js` needed.

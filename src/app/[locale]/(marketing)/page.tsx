@@ -1,87 +1,53 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
+import { SectionHeading } from "@/components/shared"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center font-sans">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-center gap-10 py-32 px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
-            Button Variants
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            Sticker-style — resize the window to see responsive sizing
-          </p>
-        </div>
+    <main className="min-h-screen pt-32 px-8 md:px-16 max-w-4xl mx-auto">
+      <p style={{ fontFamily: "var(--font-outfit)" }}>
+        Outfit direct test
+      </p>
+      <h1>Plus Jakarta Sans — Heading h1</h1>
+      <h2>Heading h2 — fluid and responsive</h2>
+      <h3>Heading h3</h3>
+      <h4>Heading h4</h4>
+      <p>
+        Outfit body text — Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Fluid typography scales smoothly across all screen sizes. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur.
+      </p>
+      <code>Geist Mono — code snippet</code>
+      <div className="flex flex-wrap gap-4 mt-8">
+        <Button variant="default">Default</Button>
+        <Button variant="yellow">Yellow</Button>
+        <Button variant="pink">Pink</Button>
+        <Button variant="lavender">Lavender</Button>
+        <Button variant="cyan">Cyan</Button>
+      </div>
 
-        {/* size="xs" */}
-        <div className="flex flex-col items-center gap-2 w-full">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground">xs</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button size="xs">Default</Button>
-            <Button variant="yellow" size="xs">Yellow</Button>
-            <Button variant="pink" size="xs">Pink</Button>
-            <Button variant="lavender" size="xs">Lavender</Button>
-            <Button variant="cyan" size="xs">Cyan</Button>
-          </div>
-        </div>
-
-        {/* size="sm" */}
-        <div className="flex flex-col items-center gap-2 w-full">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground">sm</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button size="sm">Default</Button>
-            <Button variant="yellow" size="sm">Yellow</Button>
-            <Button variant="pink" size="sm">Pink</Button>
-            <Button variant="lavender" size="sm">Lavender</Button>
-            <Button variant="cyan" size="sm">Cyan</Button>
-          </div>
-        </div>
-
-        {/* size="default" */}
-        <div className="flex flex-col items-center gap-2 w-full">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground">default</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button>Default</Button>
-            <Button variant="yellow">Yellow</Button>
-            <Button variant="pink">Pink</Button>
-            <Button variant="lavender">Lavender</Button>
-            <Button variant="cyan">Cyan</Button>
-          </div>
-        </div>
-
-        {/* size="lg" */}
-        <div className="flex flex-col items-center gap-2 w-full">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground">lg</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg">Default</Button>
-            <Button variant="yellow" size="lg">Yellow</Button>
-            <Button variant="pink" size="lg">Pink</Button>
-            <Button variant="lavender" size="lg">Lavender</Button>
-            <Button variant="cyan" size="lg">Cyan</Button>
-          </div>
-        </div>
-
-        {/* asChild — renders as <a> */}
-        <div className="flex flex-col items-center gap-2">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground">asChild (link)</p>
-          <Button asChild variant="yellow" size="lg">
-            <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
-              Go to Next.js
-            </a>
-          </Button>
-        </div>
-
-        {/* auth variants — designed for dark/coloured backgrounds */}
-        <div className="flex flex-col items-center gap-2 w-full">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground">auth (navbar)</p>
-          <div className="flex flex-wrap justify-center gap-4 bg-[oklch(0.28_0.18_278)] p-8 rounded-2xl w-full">
-            <Button variant="auth-signin">Sign In</Button>
-            <Button variant="auth-signup">Sign Up</Button>
-            <Button variant="auth-signout">Sign Out</Button>
-            <Button variant="white">White</Button>
-          </div>
-        </div>
-      </main>
-    </div>
-  );
+      <div className="mt-16 flex flex-col gap-16">
+        <SectionHeading
+          label="Featured"
+          labelVariant="yellow"
+          title="Who is learning right now?"
+          description="English tutoring for developers and students across all levels."
+        />
+        <SectionHeading
+          label="O mnie"
+          labelVariant="cyan"
+          title="Cześć, jestem Piotr"
+          align="center"
+        />
+        <SectionHeading
+          label="Rezerwacja"
+          labelVariant="pink"
+          title="Zarezerwuj swoją lekcję"
+          description="Wybierz termin który Ci odpowiada."
+        />
+      </div>
+    </main>
+  )
 }

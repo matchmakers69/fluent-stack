@@ -102,12 +102,53 @@ To render a button as an `<a>` tag (e.g. for navigation), use the `asChild` prop
 </Button>
 ```
 
+### SectionHeading component
+
+Use SectionHeading for all section titles on the page.
+Import from `@/components/shared`.
+
+Props:
+- `label` (optional) — small badge above the title; always yellow, no border-radius, uppercase, slightly rotated (`-rotate-2`). Never customise the label style.
+- `title` — the main h2 heading
+- `description` (optional) — muted subtitle text
+- `align` — `left` (default) | `center`
+
+Example:
+```tsx
+<SectionHeading
+  label="Featured"
+  title="Section title here"
+  description="Optional description text."
+/>
+```
+
+Never build custom section headers — always use this component.
+
 ### Typography
 
-- Headings: `font-extrabold`, `tracking-tight`, dark foreground 
-  (`text-foreground`)
-- Body: regular weight, `text-muted-foreground` for secondary text
-- Never use more than 2 font sizes on a single screen
+| Role     | Font              | Variable        | Tailwind       |
+|----------|-------------------|-----------------|----------------|
+| Body/UI  | Outfit            | --font-sans     | font-sans      |
+| Headings | Plus Jakarta Sans | --font-heading  | font-heading   |
+| Code     | Geist Mono        | --font-mono     | font-mono      |
+
+Fluid type scale (clamp — min, fluid, max):
+
+| Tag | Min      | Max      |
+|-----|----------|----------|
+| h1  | 3rem     | 5.5rem   |
+| h2  | 2.25rem  | 3.75rem  |
+| h3  | 1.75rem  | 2.5rem   |
+| h4  | 1.375rem | 1.875rem |
+| p   | 1.1rem   | 1.35rem  |
+
+Rules:
+- h1–h6 automatically use font-heading via globals.css
+- Body, buttons, links use font-sans (Outfit) by default
+- Never import fonts in components — use src/lib/fonts.ts
+- For non-heading elements styled as headings add `font-heading` class explicitly
+- font-mono only for code and pre elements
+- Do NOT set font-size: 62.5% on html — Tailwind assumes 1rem = 16px. Use clamp() for fluid sizing instead.
 
 ### Colours
 
