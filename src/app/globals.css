@@ -1,26 +1,181 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-navy: var(--navy);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.32 0.22 278);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.32 0.22 278);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.32 0.22 278);
+
+  /* green — slightly more saturated, warmer hue */
+  --primary: oklch(0.72 0.19 152);
+  --primary-foreground: oklch(0.32 0.22 278);
+
+  /* yellow — slightly deeper, more golden */
+  --secondary: oklch(0.88 0.18 92);
+  --secondary-foreground: oklch(0.32 0.22 278);
+
+  --muted: oklch(0.96 0.01 280);
+  --muted-foreground: oklch(0.52 0.10 278);
+
+  /* lavender — slightly more blue-purple */
+  --accent: oklch(0.82 0.13 278);
+  --accent-foreground: oklch(0.32 0.22 278);
+
+  /* hot pink — shifted slightly toward red-pink */
+  --destructive: oklch(0.67 0.26 348);
+  --destructive-foreground: oklch(0.32 0.22 278);
+
+  --border: oklch(0.92 0.02 280);
+  --input: oklch(0.95 0.02 280);
+  --ring: oklch(0.72 0.19 152);
+
+  /* all 5 palette colors */
+  --chart-1: oklch(0.76 0.13 188);   /* cyan — slightly more teal, less blue */
+  --chart-2: oklch(0.72 0.19 152);   /* green */
+  --chart-3: oklch(0.67 0.26 348);   /* hot pink */
+  --chart-4: oklch(0.88 0.18 92);    /* yellow */
+  --chart-5: oklch(0.82 0.13 278);   /* lavender */
+
+  /* 3rem → rounded-md = 2.4rem → true pill on all button heights */
+  --radius: 3rem;
+
+  --sidebar: oklch(0.97 0.01 280);
+  --sidebar-foreground: oklch(0.32 0.22 278);
+  --sidebar-primary: oklch(0.72 0.19 152);
+  --sidebar-primary-foreground: oklch(0.32 0.22 278);
+  --sidebar-accent: oklch(0.94 0.03 280);
+  --sidebar-accent-foreground: oklch(0.32 0.10 280);
+  --sidebar-border: oklch(0.92 0.02 280);
+  --sidebar-ring: oklch(0.72 0.19 152);
+
+  --grid-line: #F2F2FF;
+
+  /* navy — navbar scrolled state */
+  --navy: oklch(0.42 0.22 278);
+}
+
+.dark {
+  --background: oklch(0.20 0.10 280);
+  --foreground: oklch(0.97 0.01 280);
+
+  --card: oklch(0.26 0.11 280);
+  --card-foreground: oklch(0.97 0.01 280);
+  --popover: oklch(0.26 0.11 280);
+  --popover-foreground: oklch(0.97 0.01 280);
+
+  /* vibrant button colors stay the same in dark mode */
+  --primary: oklch(0.72 0.19 152);
+  --primary-foreground: oklch(0.32 0.22 278);
+
+  --secondary: oklch(0.88 0.18 92);
+  --secondary-foreground: oklch(0.32 0.22 278);
+
+  --muted: oklch(0.28 0.09 280);
+  --muted-foreground: oklch(0.68 0.06 280);
+
+  --accent: oklch(0.82 0.13 278);
+  --accent-foreground: oklch(0.32 0.22 278);
+
+  --destructive: oklch(0.67 0.26 348);
+  --destructive-foreground: oklch(0.32 0.22 278);
+
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.72 0.19 152);
+
+  --chart-1: oklch(0.76 0.13 188);
+  --chart-2: oklch(0.72 0.19 152);
+  --chart-3: oklch(0.67 0.26 348);
+  --chart-4: oklch(0.88 0.18 92);
+  --chart-5: oklch(0.82 0.13 278);
+
+  --sidebar: oklch(0.23 0.10 280);
+  --sidebar-foreground: oklch(0.97 0.01 280);
+  --sidebar-primary: oklch(0.72 0.19 152);
+  --sidebar-primary-foreground: oklch(0.32 0.22 278);
+  --sidebar-accent: oklch(0.28 0.09 280);
+  --sidebar-accent-foreground: oklch(0.92 0.04 280);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.72 0.19 152);
+
+  --grid-line: oklch(0.38 0.16 270 / 0.35);
+
+  /* navy — navbar scrolled state */
+  --navy: oklch(0.42 0.22 278);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  html {
+    @apply font-sans;
+    background-color: var(--background);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-attachment: fixed;
+  }
+  body {
+    @apply text-foreground;
+    min-height: 100vh;
+    background: transparent;
+  }
+  button {
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
 }
