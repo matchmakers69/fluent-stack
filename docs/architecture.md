@@ -8,10 +8,14 @@ concerns without affecting URLs.
 | Group          | URL prefix           | Auth required | Purpose                    |
 |----------------|----------------------|---------------|----------------------------|
 | (marketing)    | /                    | No            | Home, about page           |
-| (booking)      | /book-your-lesson    | No            | Public calendar & booking  |
+| (booking)      | /rezerwacja          | No            | Public calendar & booking  |
 | (dashboard)    | /dashboard etc       | Yes (Clerk)   | Student area               |
 
 Auth is handled via Clerk modals — no auth route group or pages needed.
+
+All route groups live under src/app/[locale]/.
+The locale segment is handled automatically by next-intl.
+Never create routes outside of [locale].
 
 ## Components
 
@@ -20,6 +24,7 @@ Components live in src/components/ organised by feature:
 - shared/     Navbar, Footer — used across all route groups
   - shared/Navbar — fixed top navbar, transparent → navy on scroll; used in (marketing) layout
   - shared/Logo   — reusable logo placeholder; replace div with SVG/Image when asset is ready
+  - shared/LanguageSwitcher — dropdown locale switcher, uses shadcn DropdownMenu, reads locales from src/i18n/routing.ts automatically
 - marketing/  Hero, pricing, testimonials
 - booking/    Calendar, booking form
 - dashboard/  Lesson cards, material list

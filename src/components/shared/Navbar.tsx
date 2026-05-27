@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   SignInButton,
   SignUpButton,
@@ -8,18 +8,15 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { label: "Strona główna", href: "/" },
-  { label: "O mnie", href: "/o-mnie" },
-  { label: "Rezerwacja", href: "/rezerwacja" },
-];
 
 function AuthButtons() {
   const { isSignedIn } = useUser();
+  const t = useTranslations("navigation");
 
   if (isSignedIn) {
     return <UserButton />;
@@ -28,10 +25,10 @@ function AuthButtons() {
   return (
     <>
       <SignInButton mode="modal">
-        <Button variant="auth-signin">Sign In</Button>
+        <Button variant="auth-signin">{t("signIn")}</Button>
       </SignInButton>
       <SignUpButton mode="modal">
-        <Button variant="auth-signup">Sign Up</Button>
+        <Button variant="auth-signup">{t("signUp")}</Button>
       </SignUpButton>
     </>
   );
@@ -39,13 +36,14 @@ function AuthButtons() {
 
 function MobileAuthButtons() {
   const { isSignedIn } = useUser();
+  const t = useTranslations("navigation");
 
   if (isSignedIn) {
     return (
       <div className="flex flex-col gap-3 pb-8">
         <SignOutButton>
           <Button variant="auth-signout" className="w-full">
-            Sign Out
+            {t("signOut")}
           </Button>
         </SignOutButton>
       </div>
@@ -56,12 +54,12 @@ function MobileAuthButtons() {
     <div className="flex flex-col gap-3 pb-8">
       <SignInButton mode="modal">
         <Button variant="auth-signin" className="w-full">
-          Sign In
+          {t("signIn")}
         </Button>
       </SignInButton>
       <SignUpButton mode="modal">
         <Button variant="auth-signup" className="w-full">
-          Sign Up
+          {t("signUp")}
         </Button>
       </SignUpButton>
     </div>
@@ -72,6 +70,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { isSignedIn } = useUser();
+  const t = useTranslations("navigation");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -80,6 +79,12 @@ export function Navbar() {
   }, []);
 
   const textColor = scrolled ? "text-white" : "text-foreground";
+
+  const navLinks = [
+    { label: t("home"), href: "/" },
+    { label: t("about"), href: "/o-mnie" },
+    { label: t("booking"), href: "/rezerwacja" },
+  ];
 
   return (
     <>
@@ -111,6 +116,7 @@ export function Navbar() {
             </ul>
             <div className="flex items-center gap-4">
               <AuthButtons />
+              <LanguageSwitcher scrolled={scrolled} />
             </div>
           </div>
 
@@ -156,6 +162,7 @@ export function Navbar() {
             ))}
           </ul>
 
+          <LanguageSwitcher mobile />
           <MobileAuthButtons />
         </div>
       )}

@@ -1,0 +1,27 @@
+{
+  "navigation": {
+    "home": "Strona główna",
+    "about": "O mnie",
+    "booking": "Rezerwacja",
+    "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się",
+    "signOut": "Wyloguj się"
+  },
+  "languages": {
+    "pl": "Polski",
+    "en": "English"
+  },
+  "home": {
+    "title": "Nauka angielskiego dopasowana do Ciebie",
+    "subtitle": "Korepetycje z angielskiego dla maturzystów i programistów"
+  },
+  "about": {
+    "title": "O mnie"
+  },
+  "booking": {
+    "title": "Rezerwacja lekcji"
+  },
+  "dashboard": {
+    "title": "Twoje lekcje"
+  }
+}

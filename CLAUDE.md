@@ -17,6 +17,7 @@ npm run lint     # Run ESLint
 - /docs/ui.md
 - /docs/architecture.md — read before creating any new file, folder, route or component
 - /docs/auth.md — read before touching anything auth-related (Clerk, middleware, protected routes, webhooks)
+- /docs/i18n.md — read before adding any visible text, creating pages, or touching navigation
 
 
 No test runner is configured yet.
@@ -27,6 +28,7 @@ No test runner is configured yet.
 - **React 19**
 - **TypeScript**
 - **Tailwind CSS v4** (configured via PostCSS, not a config file)
+- **next-intl** (latest v4) — i18n, pl default, en secondary
 
 ## Responsive Design
 

@@ -1,0 +1,27 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About me",
+    "booking": "Book a lesson",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "languages": {
+    "pl": "Polski",
+    "en": "English"
+  },
+  "home": {
+    "title": "English learning tailored to you",
+    "subtitle": "English tutoring for developers and students"
+  },
+  "about": {
+    "title": "About me"
+  },
+  "booking": {
+    "title": "Book a lesson"
+  },
+  "dashboard": {
+    "title": "Your lessons"
+  }
+}
