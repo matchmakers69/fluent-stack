@@ -23,5 +23,10 @@
   },
   "dashboard": {
     "title": "Twoje lekcje"
+  },
+  "notFound": {
+    "title": "Strona nie istnieje",
+    "description": "Nie możemy znaleźć strony, której szukasz. Może literówka albo strona przeniosła się w inne miejsce?",
+    "cta": "Wróć na stronę główną"
   }
 }

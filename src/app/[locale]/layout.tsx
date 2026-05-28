@@ -7,6 +7,7 @@ import type { Metadata } from "next"
 import { buildAlternates, buildOpenGraph } from "@/lib/seo"
 import { personSchema, educationalOrganizationSchema } from "@/lib/structured-data"
 import type { SupportedLocale } from "@/lib/seo"
+import NextTopLoader from "nextjs-toploader"
 
 type Params = Promise<{ locale: string }>
 
@@ -54,6 +55,7 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(educationalOrganizationSchema(l)) }}
         />
+        <NextTopLoader color="oklch(0.72 0.19 152)" showSpinner={false} />
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>
     </html>
