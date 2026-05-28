@@ -31,22 +31,43 @@ export default function HomePage() {
       <div className="mt-16 flex flex-col gap-16">
         <SectionHeading
           label="Featured"
-          labelVariant="yellow"
           title="Who is learning right now?"
           description="English tutoring for developers and students across all levels."
         />
         <SectionHeading
           label="O mnie"
-          labelVariant="cyan"
           title="Cześć, jestem Piotr"
           align="center"
         />
         <SectionHeading
           label="Rezerwacja"
-          labelVariant="pink"
           title="Zarezerwuj swoją lekcję"
           description="Wybierz termin który Ci odpowiada."
         />
+      </div>
+
+      <div className="mt-16 flex flex-col gap-8">
+        <p className="text-muted-foreground font-bold uppercase tracking-widest text-sm">
+          Display fonts
+        </p>
+
+        <div>
+          <p className="text-sm text-muted-foreground mb-2">
+            Archivo Black — font-display
+          </p>
+          <p className="font-[family-name:var(--font-display)] text-5xl leading-tight">
+            Learn English Your Way
+          </p>
+        </div>
+
+        <div>
+          <p className="text-sm text-muted-foreground mb-2">
+            Anton — font-accent
+          </p>
+          <p className="font-[family-name:var(--font-accent)] text-5xl leading-tight">
+            500+ STUDENTS
+          </p>
+        </div>
       </div>
     </main>
   )

@@ -29,7 +29,7 @@ No test runner is configured yet.
 - **TypeScript**
 - **Tailwind CSS v4** (configured via PostCSS, not a config file)
 - **next-intl** (latest v4) — i18n, pl default, en secondary
-- **Typography**: Outfit (body), Plus Jakarta Sans (headings), Geist Mono (code) — loaded via `src/lib/fonts.ts`, fluid sizing via clamp() in globals.css
+- **Typography**: Outfit (body), Plus Jakarta Sans (headings), Archivo Black (display/hero), Anton (accent/stats), Geist Mono (code) — all loaded via `src/lib/fonts.ts`, fluid sizing via clamp() in globals.css
 
 ## Responsive Design
 

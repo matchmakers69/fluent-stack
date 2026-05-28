@@ -126,11 +126,13 @@ Never build custom section headers — always use this component.
 
 ### Typography
 
-| Role     | Font              | Variable        | Tailwind       |
-|----------|-------------------|-----------------|----------------|
-| Body/UI  | Outfit            | --font-sans     | font-sans      |
-| Headings | Plus Jakarta Sans | --font-heading  | font-heading   |
-| Code     | Geist Mono        | --font-mono     | font-mono      |
+| Role     | Font              | Variable        | When to use                         |
+|----------|-------------------|-----------------|-------------------------------------|
+| Body/UI  | Outfit            | --font-sans     | Body text, buttons, links, UI       |
+| Headings | Plus Jakarta Sans | --font-heading  | h1–h6, section titles, cards        |
+| Display  | Archivo Black     | --font-display  | Hero titles, large statements       |
+| Accent   | Anton             | --font-accent   | Stats, numbers, short bold callouts |
+| Code     | Geist Mono        | --font-mono     | Code blocks, pre elements           |
 
 Fluid type scale (clamp — min, fluid, max):
 
@@ -149,6 +151,8 @@ Rules:
 - For non-heading elements styled as headings add `font-heading` class explicitly
 - font-mono only for code and pre elements
 - Do NOT set font-size: 62.5% on html — Tailwind assumes 1rem = 16px. Use clamp() for fluid sizing instead.
+- font-display and font-accent are for impact moments only — hero sections, large numbers, short punchy statements. Never use for body text, navigation or UI elements.
+- Apply display/accent fonts via Tailwind: `font-[family-name:var(--font-display)]` / `font-[family-name:var(--font-accent)]`
 
 ### Colours
 
