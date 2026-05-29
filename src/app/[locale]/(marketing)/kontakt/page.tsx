@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { ContactHero } from "@/components/marketing"
 import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo"
 import type { SupportedLocale } from "@/lib/seo"
 
@@ -36,8 +37,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default function KontaktPage() {
   return (
-    <main className="min-h-screen pt-32 px-8 md:px-16 max-w-4xl mx-auto">
-      <h1>Kontakt</h1>
-    </main>
+    <>
+      <ContactHero />
+    </>
   )
 }

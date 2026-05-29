@@ -25,6 +25,11 @@
   "dashboard": {
     "title": "Twoje lekcje"
   },
+  "footer": {
+    "tagline": "Nauka angielskiego dopasowana do Ciebie — dla maturzystów i programistów.",
+    "nav": "Nawigacja",
+    "copyright": "© {year} Fluent Stack. Wszelkie prawa zastrzeżone."
+  },
   "notFound": {
     "title": "Strona nie istnieje",
     "description": "Nie możemy znaleźć strony, której szukasz. Może literówka albo strona przeniosła się w inne miejsce?",

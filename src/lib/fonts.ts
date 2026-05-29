@@ -1,16 +1,9 @@
-import { Plus_Jakarta_Sans, Outfit, Geist_Mono, Archivo_Black, Anton } from "next/font/google"
+import { Unbounded, Geist_Mono, Archivo_Black, Anton } from "next/font/google"
 
-const jakartaFont = Plus_Jakarta_Sans({
+const unboundedFont = Unbounded({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-heading",
-  weight: ["400", "500", "600", "700", "800"],
-})
-
-const outfitFont = Outfit({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-outfit",
+  variable: "--font-unbounded",
   weight: ["400", "500", "600", "700", "800"],
 })
 
@@ -34,5 +27,5 @@ const antonFont = Anton({
   weight: "400",
 })
 
-const fonts = [jakartaFont, outfitFont, geistMonoFont, archivoBlackFont, antonFont]
+const fonts = [unboundedFont, geistMonoFont, archivoBlackFont, antonFont]
 export const fontsClassName = fonts.map((f) => f.variable).join(" ")

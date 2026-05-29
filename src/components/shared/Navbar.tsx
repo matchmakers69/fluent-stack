@@ -90,22 +90,22 @@ export function Navbar() {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 px-6 lg:px-10 py-4 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-[5.625rem]",
           scrolled ? "bg-navy" : "bg-transparent"
         )}
       >
-        <div className="flex items-center justify-between">
+        <div className="px-6 lg:px-12 flex items-center justify-between h-full">
           <Logo className={textColor} />
 
           {/* Desktop nav links + auth */}
-          <div className="hidden lg:flex items-center gap-10">
-            <ul className="flex items-center gap-8">
+          <div className="hidden lg:flex items-stretch h-full gap-10">
+            <ul className="flex items-stretch h-full gap-8">
               {navLinks.map(({ label, href }) => (
-                <li key={href}>
+                <li key={href} className="flex items-stretch">
                   <Link
                     href={href}
                     className={cn(
-                      "font-bold hover:opacity-80 transition-opacity",
+                      "flex items-center font-bold hover:opacity-80 transition-opacity",
                       textColor
                     )}
                   >

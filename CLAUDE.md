@@ -29,17 +29,23 @@ No test runner is configured yet.
 - **TypeScript**
 - **Tailwind CSS v4** (configured via PostCSS, not a config file)
 - **next-intl** (latest v4) — i18n, pl default, en secondary
-- **Typography**: Outfit (body), Plus Jakarta Sans (headings), Archivo Black (display/hero), Anton (accent/stats), Geist Mono (code) — all loaded via `src/lib/fonts.ts`, fluid sizing via clamp() in globals.css
+- **Typography**: Unbounded (body + h2-h6), Archivo Black (h1 + display), Anton (accent), Geist Mono (code) — loaded via `src/lib/fonts.ts`
 
 ## Responsive Design
 
 This project uses Tailwind CSS v4 mobile-first breakpoints:
-- Default (no prefix): mobile, < 768px
+- Default (no prefix): mobile, < 576px
+- sm: large phones, ≥ 576px
 - md: tablet and up, ≥ 768px
 - lg: desktop, ≥ 1024px
 - xl: wide desktop, ≥ 1280px
+- 2xl: very wide, ≥ 1536px
 
-All components must be built mobile-first. Define base styles for mobile, then override at md/lg. Never define desktop-only styles without a mobile fallback.
+Custom breakpoints: sm:576px md:768px lg:1024px xl:1280px 2xl:1536px.
+Container classes defined in globals.css — always use .full-width, .wrapper, .container, .container-narrow.
+Never use Tailwind max-w-* for page layout.
+
+All components must be built mobile-first. Define base styles for mobile, then override at sm/md/lg/xl/2xl. Never define desktop-only styles without a mobile fallback.
 
 ## Architecture
 

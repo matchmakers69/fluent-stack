@@ -1,10 +1,15 @@
-import { Navbar } from "@/components/shared"
+import { Navbar, Footer } from "@/components/shared"
 
-export default function MarketingLayout({ children }: { children: React.ReactNode }) {
+export default function MarketingLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main>{children}</main>
-    </>
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
   )
 }

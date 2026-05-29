@@ -126,13 +126,13 @@ Never build custom section headers — always use this component.
 
 ### Typography
 
-| Role     | Font              | Variable        | When to use                         |
-|----------|-------------------|-----------------|-------------------------------------|
-| Body/UI  | Outfit            | --font-sans     | Body text, buttons, links, UI       |
-| Headings | Plus Jakarta Sans | --font-heading  | h1–h6, section titles, cards        |
-| Display  | Archivo Black     | --font-display  | Hero titles, large statements       |
-| Accent   | Anton             | --font-accent   | Stats, numbers, short bold callouts |
-| Code     | Geist Mono        | --font-mono     | Code blocks, pre elements           |
+| Role        | Font              | Variable       | When to use              |
+|-------------|-------------------|----------------|--------------------------|
+| Body/UI     | Unbounded         | --font-sans    | Everything except h1/code|
+| h1 only     | Archivo Black     | --font-display | h1 titles only           |
+| Display     | Archivo Black     | --font-display | Large hero statements    |
+| Accent      | Anton             | --font-accent  | Stats, numbers, callouts |
+| Code        | Geist Mono        | --font-mono    | Code blocks, pre         |
 
 Fluid type scale (clamp — min, fluid, max):
 
@@ -145,10 +145,10 @@ Fluid type scale (clamp — min, fluid, max):
 | p   | 1.1rem   | 1.35rem  |
 
 Rules:
-- h1–h6 automatically use font-heading via globals.css
-- Body, buttons, links use font-sans (Outfit) by default
+- h1 uses Archivo Black (`--font-display`) with no letter-spacing, via globals.css
+- Unbounded (`--font-sans`) is the default for everything except h1 and code
+- Plus Jakarta Sans has been removed — do not use `--font-heading`
 - Never import fonts in components — use src/lib/fonts.ts
-- For non-heading elements styled as headings add `font-heading` class explicitly
 - font-mono only for code and pre elements
 - Do NOT set font-size: 62.5% on html — Tailwind assumes 1rem = 16px. Use clamp() for fluid sizing instead.
 - font-display and font-accent are for impact moments only — hero sections, large numbers, short punchy statements. Never use for body text, navigation or UI elements.
