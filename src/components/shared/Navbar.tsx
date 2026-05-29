@@ -83,14 +83,14 @@ export function Navbar() {
   const navLinks = [
     { label: t("home"), href: "/" },
     { label: t("about"), href: "/o-mnie" },
-    { label: t("booking"), href: "/rezerwacja" },
+{ label: t("contact"), href: "/kontakt" },
   ];
 
   return (
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 px-6 lg:px-10 py-4 transition-all duration-300",
           scrolled ? "bg-navy" : "bg-transparent"
         )}
       >
@@ -98,7 +98,7 @@ export function Navbar() {
           <Logo className={textColor} />
 
           {/* Desktop nav links + auth */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-10">
             <ul className="flex items-center gap-8">
               {navLinks.map(({ label, href }) => (
                 <li key={href}>
@@ -121,7 +121,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile right side */}
-          <div className="flex md:hidden items-center gap-3">
+          <div className="flex lg:hidden items-center gap-3">
             {isSignedIn && <UserButton />}
             <button
               onClick={() => setMenuOpen(true)}
