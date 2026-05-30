@@ -25,6 +25,24 @@
   "dashboard": {
     "title": "Twoje lekcje"
   },
+  "contact": {
+    "title": "Kontakt",
+    "form": {
+      "name": "Imię i nazwisko",
+      "namePlaceholder": "Jan Kowalski",
+      "nameError": "Imię musi mieć co najmniej 2 znaki",
+      "email": "Adres e-mail",
+      "emailPlaceholder": "jan@example.com",
+      "emailError": "Nieprawidłowy adres e-mail",
+      "message": "Wiadomość",
+      "messagePlaceholder": "Napisz wiadomość...",
+      "messageError": "Wiadomość musi mieć co najmniej 10 znaków",
+      "sectionLabel": "Formularz kontaktowy",
+    "sectionTitle": "Napisz do mnie",
+    "sectionDescription": "Wypełnij formularz, a odpiszę tak szybko, jak to możliwe.",
+    "submit": "Wyślij"
+    }
+  },
   "footer": {
     "tagline": "Nauka angielskiego dopasowana do Ciebie — dla maturzystów i programistów.",
     "nav": "Nawigacja",

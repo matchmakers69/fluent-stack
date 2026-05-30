@@ -25,6 +25,24 @@
   "dashboard": {
     "title": "Your lessons"
   },
+  "contact": {
+    "title": "Contact",
+    "form": {
+      "name": "Full name",
+      "namePlaceholder": "John Smith",
+      "nameError": "Name must be at least 2 characters",
+      "email": "Email address",
+      "emailPlaceholder": "john@example.com",
+      "emailError": "Invalid email address",
+      "message": "Message",
+      "messagePlaceholder": "Write your message...",
+      "messageError": "Message must be at least 10 characters",
+      "sectionLabel": "Contact form",
+    "sectionTitle": "Get in touch",
+    "sectionDescription": "Fill in the form and I'll get back to you as soon as possible.",
+    "submit": "Send"
+    }
+  },
   "footer": {
     "tagline": "English learning tailored to you — for students and developers.",
     "nav": "Navigation",

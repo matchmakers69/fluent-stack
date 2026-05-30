@@ -48,6 +48,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-navy: var(--navy);
+  --color-form-stroke: var(--form-stroke);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -116,6 +117,9 @@
 
   /* navy — navbar scrolled state */
   --navy: oklch(0.42 0.22 278);
+
+  /* form-stroke — border + shadow colour for contact form inputs */
+  --form-stroke: oklch(0.28 0.22 278);
 }
 
 .dark {
