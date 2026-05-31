@@ -1,13 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
-import {
-  SignInButton,
-  SignUpButton,
-  SignOutButton,
-  UserButton,
-  useUser,
-} from "@clerk/nextjs";
+import { SignInButton, SignUpButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
@@ -83,7 +77,7 @@ export function Navbar() {
   const navLinks = [
     { label: t("home"), href: "/" },
     { label: t("about"), href: "/o-mnie" },
-{ label: t("contact"), href: "/kontakt" },
+    { label: t("contact"), href: "/kontakt" },
   ];
 
   return (

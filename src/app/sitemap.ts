@@ -1,10 +1,10 @@
-import type { MetadataRoute } from "next"
-import { SITE_URL } from "@/lib/seo"
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
 const routes: Array<{
-  path: string
-  priority: number
-  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]
+  path: string;
+  priority: number;
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
 }> = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/o-mnie", priority: 0.8, changeFrequency: "monthly" },
@@ -13,14 +13,14 @@ const routes: Array<{
   { path: "/egzaminy", priority: 0.9, changeFrequency: "monthly" },
   { path: "/rezerwacja", priority: 0.8, changeFrequency: "weekly" },
   { path: "/kontakt", priority: 0.7, changeFrequency: "monthly" },
-]
+];
 
 function plUrl(path: string) {
-  return path === "/" ? SITE_URL : `${SITE_URL}${path}`
+  return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 }
 
 function enUrl(path: string) {
-  return `${SITE_URL}/en${path === "/" ? "" : path}`
+  return `${SITE_URL}/en${path === "/" ? "" : path}`;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: {
       languages: { pl: plUrl(path), en: enUrl(path) },
     },
-  }))
+  }));
 
   const enEntries = routes.map(({ path, priority, changeFrequency }) => ({
     url: enUrl(path),
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: {
       languages: { pl: plUrl(path), en: enUrl(path) },
     },
-  }))
+  }));
 
-  return [...plEntries, ...enEntries]
+  return [...plEntries, ...enEntries];
 }

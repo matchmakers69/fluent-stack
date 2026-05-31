@@ -38,9 +38,9 @@
       "messagePlaceholder": "Napisz wiadomość...",
       "messageError": "Wiadomość musi mieć co najmniej 10 znaków",
       "sectionLabel": "Formularz kontaktowy",
-    "sectionTitle": "Napisz do mnie",
-    "sectionDescription": "Wypełnij formularz, a odpiszę tak szybko, jak to możliwe.",
-    "submit": "Wyślij"
+      "sectionTitle": "Napisz do mnie",
+      "sectionDescription": "Wypełnij formularz, a odpiszę tak szybko, jak to możliwe.",
+      "submit": "Wyślij"
     }
   },
   "footer": {

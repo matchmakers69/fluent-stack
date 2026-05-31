@@ -1,40 +1,37 @@
-"use client"
-import { useLocale, useTranslations } from "next-intl"
-import { useRouter, usePathname } from "@/i18n/navigation"
-import { routing } from "@/i18n/routing"
+"use client";
+import { useLocale, useTranslations } from "next-intl";
+import { useRouter, usePathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const LOCALE_FLAGS: Record<string, string> = {
   pl: "🇵🇱",
   en: "🇬🇧",
-}
+};
 
 interface LanguageSwitcherProps {
-  scrolled?: boolean
-  mobile?: boolean
+  scrolled?: boolean;
+  mobile?: boolean;
 }
 
-export function LanguageSwitcher({
-  scrolled = false,
-  mobile = false,
-}: LanguageSwitcherProps) {
-  const locale = useLocale()
-  const router = useRouter()
-  const pathname = usePathname()
-  const t = useTranslations("languages")
+export function LanguageSwitcher({ scrolled = false, mobile = false }: LanguageSwitcherProps) {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const t = useTranslations("languages");
 
   const handleLocaleChange = (newLocale: string) => {
     router.replace(pathname, {
       locale: newLocale as (typeof routing.locales)[number],
-    })
-  }
+    });
+  };
 
   if (mobile) {
     return (
@@ -51,7 +48,7 @@ export function LanguageSwitcher({
           </Button>
         ))}
       </div>
-    )
+    );
   }
 
   return (
@@ -62,9 +59,7 @@ export function LanguageSwitcher({
           size="sm"
           className={cn(
             "font-bold",
-            scrolled
-              ? "text-white hover:text-white hover:bg-white/20"
-              : "text-foreground"
+            scrolled ? "text-white hover:text-white hover:bg-white/20" : "text-foreground"
           )}
         >
           {LOCALE_FLAGS[locale]} {locale.toUpperCase()}
@@ -75,15 +70,12 @@ export function LanguageSwitcher({
           <DropdownMenuItem
             key={loc}
             onClick={() => handleLocaleChange(loc)}
-            className={cn(
-              "font-bold cursor-pointer",
-              loc === locale && "bg-muted"
-            )}
+            className={cn("font-bold cursor-pointer", loc === locale && "bg-muted")}
           >
             {LOCALE_FLAGS[loc]} {t(loc)}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

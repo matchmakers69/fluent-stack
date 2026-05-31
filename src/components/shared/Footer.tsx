@@ -21,9 +21,7 @@ export async function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="flex flex-col gap-4">
             <Logo className="text-white" />
-            <p className="text-white/70 text-sm max-w-[260px] leading-relaxed">
-              {t("tagline")}
-            </p>
+            <p className="text-white/70 text-sm max-w-[260px] leading-relaxed">{t("tagline")}</p>
           </div>
 
           <div className="flex flex-col gap-4">
@@ -53,9 +51,7 @@ export async function Footer() {
           <div className="flex-1 bg-[--chart-1]" />
         </div>
 
-        <p className="text-white/40 text-sm text-center">
-          {t("copyright", { year })}
-        </p>
+        <p className="text-white/40 text-sm text-center">{t("copyright", { year })}</p>
       </div>
     </footer>
   );

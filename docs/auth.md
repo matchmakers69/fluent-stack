@@ -22,16 +22,18 @@ Auth uses modal mode. There are no `/sign-in` or `/sign-up` pages.
 ## Reading current user
 
 Server components:
+
 ```ts
-import { auth, currentUser } from "@clerk/nextjs/server"
-const { userId } = await auth()
+import { auth, currentUser } from "@clerk/nextjs/server";
+const { userId } = await auth();
 ```
 
 Client components:
+
 ```ts
-"use client"
-import { useUser } from "@clerk/nextjs"
-const { user, isLoaded } = useUser()
+"use client";
+import { useUser } from "@clerk/nextjs";
+const { user, isLoaded } = useUser();
 ```
 
 ## Auth UI — always use our Button variants
@@ -39,14 +41,14 @@ const { user, isLoaded } = useUser()
 `SignedIn`/`SignedOut` do not exist in `@clerk/nextjs` v7. Use `useUser()` to branch on auth state.
 
 ```tsx
-"use client"
-import { SignInButton, SignUpButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs"
-import { Button } from "@/components/ui/button"
+"use client";
+import { SignInButton, SignUpButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 function AuthButtons() {
-  const { isSignedIn } = useUser()
+  const { isSignedIn } = useUser();
 
-  if (isSignedIn) return <UserButton />
+  if (isSignedIn) return <UserButton />;
 
   return (
     <>
@@ -54,10 +56,10 @@ function AuthButtons() {
         <Button variant="auth-signin">Sign In</Button>
       </SignInButton>
       <SignUpButton mode="modal">
-        <Button variant="auth-signup" >Sign Up</Button>
+        <Button variant="auth-signup">Sign Up</Button>
       </SignUpButton>
     </>
-  )
+  );
 }
 ```
 

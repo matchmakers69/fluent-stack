@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
-import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/lib/seo"
-import { courseSchema } from "@/lib/structured-data"
-import type { SupportedLocale } from "@/lib/seo"
+import type { Metadata } from "next";
+import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/lib/seo";
+import { courseSchema } from "@/lib/structured-data";
+import type { SupportedLocale } from "@/lib/seo";
 
-type Params = Promise<{ locale: string }>
+type Params = Promise<{ locale: string }>;
 
 const meta = {
   pl: {
@@ -32,12 +32,12 @@ const meta = {
       "english for software engineers",
     ],
   },
-}
+};
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
-  const m = meta[l]
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
+  const m = meta[l];
 
   return {
     title: m.title,
@@ -51,12 +51,12 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       path: "/dla-programistow",
     }),
     twitter: buildTwitterCard({ title: m.title, description: m.description }),
-  }
+  };
 }
 
 export default async function DlaProgramistowPage({ params }: { params: Params }) {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
 
   const schema = courseSchema({
     name: l === "pl" ? "Angielski dla Programistów" : "English for Developers",
@@ -64,9 +64,19 @@ export default async function DlaProgramistowPage({ params }: { params: Params }
     url: buildCanonicalUrl(l, "/dla-programistow"),
     teaches:
       l === "pl"
-        ? ["code review po angielsku", "standupy w języku angielskim", "dokumentacja techniczna", "rozmowy kwalifikacyjne IT"]
-        : ["code reviews in English", "stand-ups in English", "technical documentation", "IT job interviews"],
-  })
+        ? [
+            "code review po angielsku",
+            "standupy w języku angielskim",
+            "dokumentacja techniczna",
+            "rozmowy kwalifikacyjne IT",
+          ]
+        : [
+            "code reviews in English",
+            "stand-ups in English",
+            "technical documentation",
+            "IT job interviews",
+          ],
+  });
 
   return (
     <>
@@ -78,5 +88,5 @@ export default async function DlaProgramistowPage({ params }: { params: Params }
         <h1>{l === "pl" ? "Angielski dla Programistów" : "English for Developers"}</h1>
       </main>
     </>
-  )
+  );
 }

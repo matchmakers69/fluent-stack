@@ -1,7 +1,7 @@
-import { ClerkProvider } from "@clerk/nextjs"
-import type { Metadata } from "next"
-import { SITE_URL, SITE_NAME } from "@/lib/seo"
-import "./globals.css"
+import { ClerkProvider } from "@clerk/nextjs";
+import type { Metadata } from "next";
+import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/og-image.jpg"],
   },
-}
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <ClerkProvider>{children}</ClerkProvider>
+  return <ClerkProvider>{children}</ClerkProvider>;
 }

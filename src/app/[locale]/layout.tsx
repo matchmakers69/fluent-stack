@@ -5,12 +5,9 @@ import { getMessages } from "next-intl/server";
 import { fontsClassName } from "@/lib/fonts";
 import type { Metadata } from "next";
 import { buildAlternates, buildOpenGraph } from "@/lib/seo";
-import {
-  personSchema,
-  educationalOrganizationSchema,
-} from "@/lib/structured-data";
+import { personSchema, educationalOrganizationSchema } from "@/lib/structured-data";
 import type { SupportedLocale } from "@/lib/seo";
-import NextTopLoader from "nextjs-toploader"
+import NextTopLoader from "nextjs-toploader";
 import { ChatWidget } from "@/components/chat/chat-widget";
 
 type Params = Promise<{ locale: string }>;
@@ -19,23 +16,14 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale } = await params;
-  const l = (
-    hasLocale(routing.locales, locale) ? locale : "pl"
-  ) as SupportedLocale;
+  const l = (hasLocale(routing.locales, locale) ? locale : "pl") as SupportedLocale;
 
   return {
     alternates: buildAlternates(l, "/"),
     openGraph: buildOpenGraph({
-      title:
-        l === "pl"
-          ? "FluentStack — Angielski Online"
-          : "FluentStack — Online English Lessons",
+      title: l === "pl" ? "FluentStack — Angielski Online" : "FluentStack — Online English Lessons",
       description:
         l === "pl"
           ? "Indywidualne lekcje angielskiego online. Angielski dla programistów, Business English, matura i Cambridge."
@@ -58,11 +46,7 @@ export default async function LocaleLayout({
   const l = locale as SupportedLocale;
 
   return (
-    <html
-      lang={locale}
-      suppressHydrationWarning
-      className={`${fontsClassName} h-full`}
-    >
+    <html lang={locale} suppressHydrationWarning className={`${fontsClassName} h-full`}>
       <body className={`${fontsClassName} scroll-touch antialiased`}>
         <script
           type="application/ld+json"
@@ -75,9 +59,7 @@ export default async function LocaleLayout({
           }}
         />
         <NextTopLoader color="oklch(0.72 0.19 152)" showSpinner={true} />
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         <ChatWidget />
       </body>
     </html>

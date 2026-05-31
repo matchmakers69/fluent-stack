@@ -38,9 +38,9 @@
       "messagePlaceholder": "Write your message...",
       "messageError": "Message must be at least 10 characters",
       "sectionLabel": "Contact form",
-    "sectionTitle": "Get in touch",
-    "sectionDescription": "Fill in the form and I'll get back to you as soon as possible.",
-    "submit": "Send"
+      "sectionTitle": "Get in touch",
+      "sectionDescription": "Fill in the form and I'll get back to you as soon as possible.",
+      "submit": "Send"
     }
   },
   "footer": {

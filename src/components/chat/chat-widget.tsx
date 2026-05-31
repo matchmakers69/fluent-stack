@@ -1,46 +1,41 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { useChat } from "@ai-sdk/react"
-import { MessageCircle, Send, X } from "lucide-react"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Textarea } from "@/components/ui/textarea"
-import { cn } from "@/lib/utils"
+import { useEffect, useRef, useState } from "react";
+import { useChat } from "@ai-sdk/react";
+import { MessageCircle, Send, X } from "lucide-react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 
 export function ChatWidget() {
-  const [open, setOpen] = useState(false)
-  const [input, setInput] = useState("")
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   // useChat defaults to /api/chat; AI SDK 5 uses sendMessage instead of append
-  const { messages, sendMessage, status } = useChat()
-  const isLoading = status === "submitted" || status === "streaming"
+  const { messages, sendMessage, status } = useChat();
+  const isLoading = status === "submitted" || status === "streaming";
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages, isLoading])
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
 
   const handleSend = () => {
-    const text = input.trim()
-    if (!text || isLoading) return
-    sendMessage({ text })
-    setInput("")
-  }
+    const text = input.trim();
+    if (!text || isLoading) return;
+    sendMessage({ text });
+    setInput("");
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault()
-      handleSend()
+      e.preventDefault();
+      handleSend();
     }
-  }
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
@@ -50,7 +45,7 @@ export function ChatWidget() {
             // rounded-[10px] bypasses --radius: 3rem which makes rounded-lg = 48px
             // overflow-visible so button shadows aren't clipped at card edges
             "flex h-130 w-105 max-w-[calc(100vw-48px)] flex-col gap-0",
-            "overflow-visible rounded-[16px] shadow-xl",
+            "overflow-visible rounded-[16px] shadow-xl"
           )}
         >
           {/* Header */}
@@ -76,7 +71,7 @@ export function ChatWidget() {
                     key={message.id}
                     className={cn(
                       "flex gap-2",
-                      message.role === "user" ? "flex-row-reverse" : "flex-row",
+                      message.role === "user" ? "flex-row-reverse" : "flex-row"
                     )}
                   >
                     <Avatar className="size-7 shrink-0">
@@ -89,7 +84,7 @@ export function ChatWidget() {
                         "max-w-[75%] rounded-xl px-3 py-2 text-sm leading-relaxed",
                         message.role === "user"
                           ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-foreground",
+                          : "bg-muted text-foreground"
                       )}
                     >
                       {message.parts.map((part, i) =>
@@ -97,7 +92,7 @@ export function ChatWidget() {
                           <span key={i} className="whitespace-pre-wrap">
                             {part.text}
                           </span>
-                        ) : null,
+                        ) : null
                       )}
                     </div>
                   </div>
@@ -154,5 +149,5 @@ export function ChatWidget() {
         {open ? <X className="size-5" /> : <MessageCircle className="size-5" />}
       </Button>
     </div>
-  )
+  );
 }

@@ -19,7 +19,6 @@ npm run lint     # Run ESLint
 - /docs/auth.md — read before touching anything auth-related (Clerk, middleware, protected routes, webhooks)
 - /docs/i18n.md — read before adding any visible text, creating pages, or touching navigation
 
-
 No test runner is configured yet.
 
 ## Stack
@@ -34,6 +33,7 @@ No test runner is configured yet.
 ## Responsive Design
 
 This project uses Tailwind CSS v4 mobile-first breakpoints:
+
 - Default (no prefix): mobile, < 576px
 - sm: large phones, ≥ 576px
 - md: tablet and up, ≥ 768px
@@ -43,7 +43,7 @@ This project uses Tailwind CSS v4 mobile-first breakpoints:
 
 Custom breakpoints: sm:576px md:768px lg:1024px xl:1280px 2xl:1536px.
 Container classes defined in globals.css — always use .full-width, .wrapper, .container, .container-narrow.
-Never use Tailwind max-w-* for page layout.
+Never use Tailwind max-w-\* for page layout.
 
 All components must be built mobile-first. Define base styles for mobile, then override at sm/md/lg/xl/2xl. Never define desktop-only styles without a mobile fallback.
 

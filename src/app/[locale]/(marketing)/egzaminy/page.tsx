@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
-import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/lib/seo"
-import { courseSchema } from "@/lib/structured-data"
-import type { SupportedLocale } from "@/lib/seo"
+import type { Metadata } from "next";
+import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/lib/seo";
+import { courseSchema } from "@/lib/structured-data";
+import type { SupportedLocale } from "@/lib/seo";
 
-type Params = Promise<{ locale: string }>
+type Params = Promise<{ locale: string }>;
 
 const meta = {
   pl: {
@@ -35,12 +35,12 @@ const meta = {
       "matura english preparation",
     ],
   },
-}
+};
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
-  const m = meta[l]
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
+  const m = meta[l];
 
   return {
     title: m.title,
@@ -54,12 +54,12 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       path: "/egzaminy",
     }),
     twitter: buildTwitterCard({ title: m.title, description: m.description }),
-  }
+  };
 }
 
 export default async function EgzaminyPage({ params }: { params: Params }) {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
 
   const schema = courseSchema({
     name:
@@ -70,9 +70,19 @@ export default async function EgzaminyPage({ params }: { params: Params }) {
     url: buildCanonicalUrl(l, "/egzaminy"),
     teaches:
       l === "pl"
-        ? ["matura z angielskiego", "Cambridge FCE B2 First", "Cambridge CAE C1 Advanced", "strategie egzaminacyjne"]
-        : ["English Matura exam", "Cambridge FCE B2 First", "Cambridge CAE C1 Advanced", "exam strategies"],
-  })
+        ? [
+            "matura z angielskiego",
+            "Cambridge FCE B2 First",
+            "Cambridge CAE C1 Advanced",
+            "strategie egzaminacyjne",
+          ]
+        : [
+            "English Matura exam",
+            "Cambridge FCE B2 First",
+            "Cambridge CAE C1 Advanced",
+            "exam strategies",
+          ],
+  });
 
   return (
     <>
@@ -81,10 +91,8 @@ export default async function EgzaminyPage({ params }: { params: Params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <main className="min-h-screen pt-32 px-8 md:px-16 max-w-4xl mx-auto">
-        <h1>
-          {l === "pl" ? "Przygotowanie do egzaminów" : "Exam Preparation"}
-        </h1>
+        <h1>{l === "pl" ? "Przygotowanie do egzaminów" : "Exam Preparation"}</h1>
       </main>
     </>
-  )
+  );
 }

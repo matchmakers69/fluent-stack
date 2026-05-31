@@ -1,10 +1,10 @@
-import type { Metadata } from "next"
-import { Hero } from "@/components/marketing"
-import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo"
-import { localBusinessSchema, faqPageSchema } from "@/lib/structured-data"
-import type { SupportedLocale } from "@/lib/seo"
+import type { Metadata } from "next";
+import { Hero } from "@/components/marketing";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
+import { localBusinessSchema, faqPageSchema } from "@/lib/structured-data";
+import type { SupportedLocale } from "@/lib/seo";
 
-type Params = Promise<{ locale: string }>
+type Params = Promise<{ locale: string }>;
 
 const meta = {
   pl: {
@@ -35,12 +35,12 @@ const meta = {
       "cambridge exam preparation",
     ],
   },
-}
+};
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
-  const m = meta[l]
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
+  const m = meta[l];
 
   return {
     title: m.title,
@@ -49,12 +49,12 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     alternates: buildAlternates(l, "/"),
     openGraph: buildOpenGraph({ title: m.title, description: m.description, locale: l }),
     twitter: buildTwitterCard({ title: m.title, description: m.description }),
-  }
+  };
 }
 
 export default async function HomePage({ params }: { params: Params }) {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
 
   return (
     <>
@@ -68,5 +68,5 @@ export default async function HomePage({ params }: { params: Params }) {
       />
       <Hero />
     </>
-  )
+  );
 }

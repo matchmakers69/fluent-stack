@@ -1,11 +1,11 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
-  label?: string
-  title: string
-  description?: string
-  align?: "left" | "center"
-  className?: string
+  label?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+  className?: string;
 }
 
 export function SectionHeading({
@@ -36,11 +36,7 @@ export function SectionHeading({
         </span>
       )}
       <h2 className="m-0">{title}</h2>
-      {description && (
-        <p className="text-muted-foreground max-w-2xl">
-          {description}
-        </p>
-      )}
+      {description && <p className="text-muted-foreground max-w-2xl">{description}</p>}
     </div>
-  )
+  );
 }

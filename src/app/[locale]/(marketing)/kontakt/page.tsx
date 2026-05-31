@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
-import { ContactHero } from "@/components/marketing"
-import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo"
-import type { SupportedLocale } from "@/lib/seo"
+import type { Metadata } from "next";
+import { ContactHero } from "@/components/marketing";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
+import type { SupportedLocale } from "@/lib/seo";
 
-type Params = Promise<{ locale: string }>
+type Params = Promise<{ locale: string }>;
 
 const meta = {
   pl: {
@@ -18,21 +18,26 @@ const meta = {
       "Get in touch about online English lessons. Happy to answer questions about English for developers, Business English or exam preparation.",
     keywords: ["contact english tutor", "online english lessons contact"],
   },
-}
+};
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
-  const m = meta[l]
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
+  const m = meta[l];
 
   return {
     title: m.title,
     description: m.description,
     keywords: m.keywords,
     alternates: buildAlternates(l, "/kontakt"),
-    openGraph: buildOpenGraph({ title: m.title, description: m.description, locale: l, path: "/kontakt" }),
+    openGraph: buildOpenGraph({
+      title: m.title,
+      description: m.description,
+      locale: l,
+      path: "/kontakt",
+    }),
     twitter: buildTwitterCard({ title: m.title, description: m.description }),
-  }
+  };
 }
 
 export default function KontaktPage() {
@@ -40,5 +45,5 @@ export default function KontaktPage() {
     <>
       <ContactHero />
     </>
-  )
+  );
 }

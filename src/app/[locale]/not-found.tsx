@@ -1,10 +1,10 @@
-import { getLocale, getTranslations } from "next-intl/server"
-import { Link } from "@/i18n/navigation"
-import { Button } from "@/components/ui/button"
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { Button } from "@/components/ui/button";
 
 export default async function NotFound() {
-  const locale = await getLocale()
-  const t = await getTranslations({ locale, namespace: "notFound" })
+  const locale = await getLocale();
+  const t = await getTranslations({ locale, namespace: "notFound" });
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-8 text-center">
@@ -17,5 +17,5 @@ export default async function NotFound() {
         <Link href="/">{t("cta")}</Link>
       </Button>
     </main>
-  )
+  );
 }

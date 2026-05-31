@@ -80,7 +80,7 @@
   --secondary-foreground: oklch(0.32 0.22 278);
 
   --muted: oklch(0.96 0.01 280);
-  --muted-foreground: oklch(0.52 0.10 278);
+  --muted-foreground: oklch(0.52 0.1 278);
 
   /* lavender — slightly more blue-purple */
   --accent: oklch(0.82 0.13 278);
@@ -95,11 +95,11 @@
   --ring: oklch(0.72 0.19 152);
 
   /* all 5 palette colors */
-  --chart-1: oklch(0.76 0.13 188);   /* cyan — slightly more teal, less blue */
-  --chart-2: oklch(0.72 0.19 152);   /* green */
-  --chart-3: oklch(0.67 0.26 348);   /* hot pink */
-  --chart-4: oklch(0.88 0.18 92);    /* yellow */
-  --chart-5: oklch(0.82 0.13 278);   /* lavender */
+  --chart-1: oklch(0.76 0.13 188); /* cyan — slightly more teal, less blue */
+  --chart-2: oklch(0.72 0.19 152); /* green */
+  --chart-3: oklch(0.67 0.26 348); /* hot pink */
+  --chart-4: oklch(0.88 0.18 92); /* yellow */
+  --chart-5: oklch(0.82 0.13 278); /* lavender */
 
   /* 3rem → rounded-md = 2.4rem → true pill on all button heights */
   --radius: 3rem;
@@ -109,11 +109,11 @@
   --sidebar-primary: oklch(0.72 0.19 152);
   --sidebar-primary-foreground: oklch(0.32 0.22 278);
   --sidebar-accent: oklch(0.94 0.03 280);
-  --sidebar-accent-foreground: oklch(0.32 0.10 280);
+  --sidebar-accent-foreground: oklch(0.32 0.1 280);
   --sidebar-border: oklch(0.92 0.02 280);
   --sidebar-ring: oklch(0.72 0.19 152);
 
-  --grid-line: #F2F2FF;
+  --grid-line: #f2f2ff;
 
   /* navy — navbar scrolled state */
   --navy: oklch(0.42 0.22 278);
@@ -123,7 +123,7 @@
 }
 
 .dark {
-  --background: oklch(0.20 0.10 280);
+  --background: oklch(0.2 0.1 280);
   --foreground: oklch(0.97 0.01 280);
 
   --card: oklch(0.26 0.11 280);
@@ -157,7 +157,7 @@
   --chart-4: oklch(0.88 0.18 92);
   --chart-5: oklch(0.82 0.13 278);
 
-  --sidebar: oklch(0.23 0.10 280);
+  --sidebar: oklch(0.23 0.1 280);
   --sidebar-foreground: oklch(0.97 0.01 280);
   --sidebar-primary: oklch(0.72 0.19 152);
   --sidebar-primary-foreground: oklch(0.32 0.22 278);
@@ -252,7 +252,7 @@
     @apply border-border outline-ring/50;
   }
   html {
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
   }
   body {
     @apply text-foreground;
@@ -301,7 +301,8 @@
     line-height: 1.22;
   }
 
-  h5, h6 {
+  h5,
+  h6 {
     font-family: var(--font-heading);
     font-size: clamp(0.9rem, 1.35vw, 1.2rem);
     font-weight: 600;
@@ -314,15 +315,19 @@
     line-height: 1.8;
   }
 
-  a, span, li {
+  a,
+  span,
+  li {
     font-size: clamp(0.8rem, 1vw, 0.9rem);
   }
 
-  nav a, nav li {
+  nav a,
+  nav li {
     font-size: clamp(0.825rem, 1vw, 0.95rem);
   }
 
-  code, pre {
+  code,
+  pre {
     font-family: var(--font-mono);
   }
 }

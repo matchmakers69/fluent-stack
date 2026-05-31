@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
-import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/lib/seo"
-import { courseSchema } from "@/lib/structured-data"
-import type { SupportedLocale } from "@/lib/seo"
+import type { Metadata } from "next";
+import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/lib/seo";
+import { courseSchema } from "@/lib/structured-data";
+import type { SupportedLocale } from "@/lib/seo";
 
-type Params = Promise<{ locale: string }>
+type Params = Promise<{ locale: string }>;
 
 const meta = {
   pl: {
@@ -30,12 +30,12 @@ const meta = {
       "professional english lessons",
     ],
   },
-}
+};
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
-  const m = meta[l]
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
+  const m = meta[l];
 
   return {
     title: m.title,
@@ -49,12 +49,12 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       path: "/business-english",
     }),
     twitter: buildTwitterCard({ title: m.title, description: m.description }),
-  }
+  };
 }
 
 export default async function BusinessEnglishPage({ params }: { params: Params }) {
-  const { locale } = await params
-  const l = (locale === "en" ? "en" : "pl") as SupportedLocale
+  const { locale } = await params;
+  const l = (locale === "en" ? "en" : "pl") as SupportedLocale;
 
   const schema = courseSchema({
     name: "Business English",
@@ -62,9 +62,19 @@ export default async function BusinessEnglishPage({ params }: { params: Params }
     url: buildCanonicalUrl(l, "/business-english"),
     teaches:
       l === "pl"
-        ? ["prezentacje po angielsku", "negocjacje w języku angielskim", "e-maile biznesowe", "spotkania korporacyjne"]
-        : ["presentations in English", "business negotiations", "business emails", "corporate meetings"],
-  })
+        ? [
+            "prezentacje po angielsku",
+            "negocjacje w języku angielskim",
+            "e-maile biznesowe",
+            "spotkania korporacyjne",
+          ]
+        : [
+            "presentations in English",
+            "business negotiations",
+            "business emails",
+            "corporate meetings",
+          ],
+  });
 
   return (
     <>
@@ -76,5 +86,5 @@ export default async function BusinessEnglishPage({ params }: { params: Params }
         <h1>Business English</h1>
       </main>
     </>
-  )
+  );
 }

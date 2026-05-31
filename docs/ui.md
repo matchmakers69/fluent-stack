@@ -61,10 +61,11 @@ formatDate(workout.createdAt); // "1st Sep 2025"
 ```
 
 Any new date-related helpers (e.g. relative time, range formatting) must be added to `src/lib/dates.ts` and imported from there — never inline.
+
 ## Design Language
 
-This project uses a bold, colourful, playful aesthetic. Every UI decision 
-should reinforce this — never default to grey/neutral when a colour variant 
+This project uses a bold, colourful, playful aesthetic. Every UI decision
+should reinforce this — never default to grey/neutral when a colour variant
 exists.
 
 ### Buttons
@@ -75,21 +76,21 @@ Never use Tailwind radius scale (`rounded-2xl`, `rounded-lg` etc) for buttons �
 
 Available variants and their intended use:
 
-| Variant        | CSS token              | Use for                        |
-|----------------|------------------------|--------------------------------|
-| `default`      | `--primary` green      | Primary / most important CTA   |
-| `secondary`    | `--secondary` yellow   | Secondary actions, highlights  |
-| `pink`         | `--destructive`        | Warnings, delete, bold accent  |
-| `lavender`     | `--accent`             | Soft actions, tags, categories |
-| `cyan`         | `--chart-1`            | Info, links, neutral accent    |
-| `auth-signin`  | deep navy              | Sign In — on dark navbar       |
-| `auth-signup`  | purple                 | Sign Up — on dark navbar       |
-| `auth-signout` | transparent            | Sign Out — on dark navbar      |
+| Variant        | CSS token               | Use for                                   |
+| -------------- | ----------------------- | ----------------------------------------- |
+| `default`      | `--primary` green       | Primary / most important CTA              |
+| `secondary`    | `--secondary` yellow    | Secondary actions, highlights             |
+| `pink`         | `--destructive`         | Warnings, delete, bold accent             |
+| `lavender`     | `--accent`              | Soft actions, tags, categories            |
+| `cyan`         | `--chart-1`             | Info, links, neutral accent               |
+| `auth-signin`  | deep navy               | Sign In — on dark navbar                  |
+| `auth-signup`  | purple                  | Sign Up — on dark navbar                  |
+| `auth-signout` | transparent             | Sign Out — on dark navbar                 |
 | `white`        | white bg, purple border | Outlined CTA, use on coloured backgrounds |
 
 Auth variants use white border and white shadow. Use these exclusively for Clerk auth buttons in the navbar.
 
-Never use `ghost` or `link` variants for visible UI buttons — only for 
+Never use `ghost` or `link` variants for visible UI buttons — only for
 icon-only controls or inline text actions.
 
 Default size is `lg` (`h-11 px-5 text-lg` on desktop, `h-9 px-4 text-sm` on mobile) unless space is constrained.
@@ -108,12 +109,14 @@ Use SectionHeading for all section titles on the page.
 Import from `@/components/shared`.
 
 Props:
+
 - `label` (optional) — small badge above the title; always yellow, no border-radius, uppercase, slightly rotated (`-rotate-2`). Never customise the label style.
 - `title` — the main h2 heading
 - `description` (optional) — muted subtitle text
 - `align` — `left` (default) | `center`
 
 Example:
+
 ```tsx
 <SectionHeading
   label="Featured"
@@ -126,18 +129,18 @@ Never build custom section headers — always use this component.
 
 ### Typography
 
-| Role        | Font              | Variable       | When to use              |
-|-------------|-------------------|----------------|--------------------------|
-| Body/UI     | Unbounded         | --font-sans    | Everything except h1/code|
-| h1 only     | Archivo Black     | --font-display | h1 titles only           |
-| Display     | Archivo Black     | --font-display | Large hero statements    |
-| Accent      | Anton             | --font-accent  | Stats, numbers, callouts |
-| Code        | Geist Mono        | --font-mono    | Code blocks, pre         |
+| Role    | Font          | Variable       | When to use               |
+| ------- | ------------- | -------------- | ------------------------- |
+| Body/UI | Unbounded     | --font-sans    | Everything except h1/code |
+| h1 only | Archivo Black | --font-display | h1 titles only            |
+| Display | Archivo Black | --font-display | Large hero statements     |
+| Accent  | Anton         | --font-accent  | Stats, numbers, callouts  |
+| Code    | Geist Mono    | --font-mono    | Code blocks, pre          |
 
 Fluid type scale (clamp — min, fluid, max):
 
 | Tag | Min      | Max      |
-|-----|----------|----------|
+| --- | -------- | -------- |
 | h1  | 3rem     | 5.5rem   |
 | h2  | 2.25rem  | 3.75rem  |
 | h3  | 1.75rem  | 2.5rem   |
@@ -145,6 +148,7 @@ Fluid type scale (clamp — min, fluid, max):
 | p   | 1.1rem   | 1.35rem  |
 
 Rules:
+
 - h1 uses Archivo Black (`--font-display`) with no letter-spacing, via globals.css
 - Unbounded (`--font-sans`) is the default for everything except h1 and code
 - Plus Jakarta Sans has been removed — do not use `--font-heading`
@@ -156,18 +160,18 @@ Rules:
 
 ### Colours
 
-All colours come from CSS variables defined in `globals.css`. Never use 
-raw hex or Tailwind's built-in colour palette (e.g. `bg-green-500`). 
+All colours come from CSS variables defined in `globals.css`. Never use
+raw hex or Tailwind's built-in colour palette (e.g. `bg-green-500`).
 Always use semantic tokens:
 
 - `bg-primary` — green
-- `bg-secondary` — yellow  
+- `bg-secondary` — yellow
 - `bg-destructive` — hot pink
 - `bg-accent` — lavender
 - `bg-[--chart-1]` — cyan
 - `bg-[--navy]` — navbar scrolled state, never use for buttons
 
-The background has a subtle grid pattern (set in `globals.css`) — 
+The background has a subtle grid pattern (set in `globals.css`) —
 do not override `background` on `<html>` or `<body>`.
 
 ### Spacing & Layout

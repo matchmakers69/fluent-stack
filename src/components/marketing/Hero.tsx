@@ -4,5 +4,5 @@ export function Hero() {
       <div className="bg-accent/20" />
       <div className="hidden md:block bg-secondary/20" />
     </section>
-  )
+  );
 }
