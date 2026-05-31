@@ -4,14 +4,12 @@ import { routing } from "./i18n/routing";
 
 const handleI18nRouting = createIntlMiddleware(routing);
 
-const isProtectedRoute = createRouteMatcher([
-  "/:locale/dashboard(.*)",
-  "/:locale/lekcje(.*)",
-  "/:locale/materialy(.*)",
-]);
+const isApiRoute = createRouteMatcher(["/api(.*)"]);
 
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) await auth.protect();
+export default clerkMiddleware(async (_auth, req) => {
+  // API routes — skip i18n, return without redirect
+  if (isApiRoute(req)) return;
+
   return handleI18nRouting(req);
 });
 

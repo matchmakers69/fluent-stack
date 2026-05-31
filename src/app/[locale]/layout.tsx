@@ -8,7 +8,6 @@ import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 import { personSchema, educationalOrganizationSchema } from "@/lib/structured-data";
 import type { SupportedLocale } from "@/lib/seo";
 import NextTopLoader from "nextjs-toploader";
-import { ChatWidget } from "@/components/chat/chat-widget";
 
 type Params = Promise<{ locale: string }>;
 
@@ -60,7 +59,6 @@ export default async function LocaleLayout({
         />
         <NextTopLoader color="oklch(0.72 0.19 152)" showSpinner={true} />
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-        <ChatWidget />
       </body>
     </html>
   );

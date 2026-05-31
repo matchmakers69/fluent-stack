@@ -23,7 +23,7 @@ export function ChatWidget() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  const handleSend = () => {
+  const handleChatbotSubmit = () => {
     const text = input.trim();
     if (!text || isLoading) return;
     sendMessage({ text });
@@ -33,7 +33,7 @@ export function ChatWidget() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      handleChatbotSubmit();
     }
   };
 
@@ -81,10 +81,10 @@ export function ChatWidget() {
                     </Avatar>
                     <div
                       className={cn(
-                        "max-w-[75%] rounded-xl px-3 py-2 text-sm leading-relaxed",
+                        "rounded-[16px] px-3 py-2 text-sm leading-relaxed",
                         message.role === "user"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-foreground"
+                          ? "max-w-[75%] bg-primary text-primary-foreground"
+                          : "max-w-[85%] bg-muted text-foreground"
                       )}
                     >
                       {message.parts.map((part, i) =>
@@ -103,7 +103,7 @@ export function ChatWidget() {
                     <Avatar className="size-7 shrink-0">
                       <AvatarFallback className="text-xs">AI</AvatarFallback>
                     </Avatar>
-                    <div className="flex items-center gap-1 rounded-xl bg-muted px-3 py-2">
+                    <div className="flex items-center gap-1 rounded-[16px] bg-muted px-3 py-2">
                       <span className="size-2 animate-bounce rounded-full bg-muted-foreground [animation-delay:0ms]" />
                       <span className="size-2 animate-bounce rounded-full bg-muted-foreground [animation-delay:150ms]" />
                       <span className="size-2 animate-bounce rounded-full bg-muted-foreground [animation-delay:300ms]" />
@@ -128,7 +128,7 @@ export function ChatWidget() {
             />
             <Button
               size="icon"
-              onClick={handleSend}
+              onClick={handleChatbotSubmit}
               disabled={!input.trim() || isLoading}
               aria-label="Send message"
               className="size-8 md:size-8 rounded-full"

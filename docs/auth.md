@@ -11,9 +11,28 @@ Do not add it anywhere else.
 ## Middleware
 
 `src/proxy.ts` (this project uses `proxy.ts` as the middleware file).
-`clerkMiddleware` protects `/dashboard`, `/lessons`, `/educational-materials` routes.
-Public routes need no changes — they are public by default.
-Never add auth checks inside page or layout components.
+The middleware only handles Clerk token validation and i18n routing — it does **not** enforce route protection.
+
+Do NOT add route protection to the middleware. Because `localePrefix: "as-needed"` omits the locale prefix for the default language (pl), URL patterns like `/:locale/materialy(.*)` never match Polish routes. Middleware-level matchers are unreliable here.
+
+Do NOT use `auth.protect()` — this project uses modal auth with no `/sign-in` page.
+
+## Route Protection
+
+Protect authenticated routes in the **layout** of the relevant route group. All protected routes (`/dashboard`, `/lekcje`, `/materialy`) live under `src/app/[locale]/(dashboard)/` and are guarded by that group's `layout.tsx`:
+
+```ts
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const { userId } = await auth();
+  if (!userId) redirect("/");
+  return <>{children}</>;
+}
+```
+
+Unauthenticated users are redirected to `/` (home page). Any new protected route added under `(dashboard)/` is automatically covered.
 
 ## Modal mode — no auth pages needed
 

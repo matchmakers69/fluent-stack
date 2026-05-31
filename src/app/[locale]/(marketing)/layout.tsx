@@ -1,3 +1,4 @@
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { Navbar, Footer } from "@/components/shared";
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
@@ -6,6 +7,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
