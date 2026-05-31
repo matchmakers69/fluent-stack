@@ -10,7 +10,8 @@ import {
   educationalOrganizationSchema,
 } from "@/lib/structured-data";
 import type { SupportedLocale } from "@/lib/seo";
-import NextTopLoader from "nextjs-toploader";
+import NextTopLoader from "nextjs-toploader"
+import { ChatWidget } from "@/components/chat/chat-widget";
 
 type Params = Promise<{ locale: string }>;
 
@@ -77,6 +78,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <ChatWidget />
       </body>
     </html>
   );
