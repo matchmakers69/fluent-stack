@@ -5,9 +5,9 @@ export const documents = pgTable(
   "documents",
   {
     id: serial("id").primaryKey(),
-    // Raw text chunk passed as context to the LLM.
     content: text("content").notNull(),
-    // 1536 dimensions matches OpenAI text-embedding-3-small / ada-002 output.
+    sourceFileName: text("source_file_name"),
+    // 1536 dimensions matches OpenAI text-embedding-3-small output.
     embedding: vector("embedding", { dimensions: 1536 }),
   },
   // HNSW index enables fast approximate nearest-neighbour search at query time.

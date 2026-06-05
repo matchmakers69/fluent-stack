@@ -11,6 +11,7 @@ export async function searchDocuments(query: string, limit: number = 5, threshol
     .select({
       id: documents.id,
       content: documents.content,
+      sourceFileName: documents.sourceFileName,
       similarity,
     })
     .from(documents)

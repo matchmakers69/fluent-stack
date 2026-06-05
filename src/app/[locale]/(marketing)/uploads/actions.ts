@@ -33,6 +33,7 @@ export async function processPdfFile(
     // Prepare data for database
     const records = chunks.map((chunk, index) => ({
       content: chunk,
+      sourceFileName: file.name,
       embedding: embeddings[index],
     }));
     // Insert into database

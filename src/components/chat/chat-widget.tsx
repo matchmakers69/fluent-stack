@@ -10,6 +10,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
+const MESSAGE_LIMIT = 20;
+
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -18,6 +20,7 @@ export function ChatWidget() {
   // useChat defaults to /api/chat; AI SDK 5 uses sendMessage instead of append
   const { messages, sendMessage, status } = useChat();
   const isLoading = status === "submitted" || status === "streaming";
+  const isLimitReached = messages.length >= MESSAGE_LIMIT;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -25,7 +28,7 @@ export function ChatWidget() {
 
   const handleChatbotSubmit = () => {
     const text = input.trim();
-    if (!text || isLoading) return;
+    if (!text || isLoading || isLimitReached) return;
     sendMessage({ text });
     setInput("");
   };
@@ -118,23 +121,31 @@ export function ChatWidget() {
 
           {/* Input */}
           <CardFooter className="shrink-0 gap-2 border-t bg-transparent p-4">
-            <Textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type a message…"
-              className="min-h-11 resize-none py-2.5 text-sm"
-              rows={2}
-            />
-            <Button
-              size="icon"
-              onClick={handleChatbotSubmit}
-              disabled={!input.trim() || isLoading}
-              aria-label="Send message"
-              className="size-8 md:size-8 rounded-full"
-            >
-              <Send className="size-4" />
-            </Button>
+            {isLimitReached ? (
+              <p className="w-full text-center text-xs text-muted-foreground">
+                Message limit reached. Please refresh to start a new conversation.
+              </p>
+            ) : (
+              <>
+                <Textarea
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Type a message…"
+                  className="min-h-11 resize-none py-2.5 text-sm"
+                  rows={2}
+                />
+                <Button
+                  size="icon"
+                  onClick={handleChatbotSubmit}
+                  disabled={!input.trim() || isLoading}
+                  aria-label="Send message"
+                  className="size-8 md:size-8 rounded-full"
+                >
+                  <Send className="size-4" />
+                </Button>
+              </>
+            )}
           </CardFooter>
         </Card>
       )}

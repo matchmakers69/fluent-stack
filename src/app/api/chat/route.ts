@@ -27,7 +27,10 @@ const tools = {
           return "No relevant documents found";
         }
         const formattedResults = results
-          .map((result, index) => `[${index + 1}] ${result.content}`)
+          .map((result, index) => {
+            const source = result.sourceFileName ? ` (source: ${result.sourceFileName})` : "";
+            return `[${index + 1}]${source}\n${result.content}`;
+          })
           .join("\n\n");
 
         return formattedResults;
@@ -43,12 +46,17 @@ export async function POST(req: Request) {
   try {
     const { messages }: { messages: ChatMessage[] } = await req.json();
 
+    const trimmedMessages = messages.slice(-10);
+
     const result = streamText({
       model: openai("gpt-4o-mini"),
       system:
-        "You are a helpful assistant for FluentStack, an online English tutoring platform. You are a helpful assistant with access to a knowledge base. When users ask questions, search the knowledge base for relevant information. ALWAYS search before answering if the question might relate to uploaded documents. Base your answers on the search results when available. Give concise answers that correctly answer what the user is asking for. Do not flood them with irrelevant information. If you don't know the answer, say that you don't know. If you are asked a question that is not related to the knowledge base, say that you don't know.",
-      stopWhen: stepCountIs(2),
-      messages: await convertToModelMessages(messages),
+        "You are a helpful assistant for FluentStack, an online English tutoring platform. You have access to a knowledge base of uploaded documents.\n\n" +
+        "Search the knowledge base when the user asks about course content, lessons, materials, or anything that might be covered in uploaded documents. You may search more than once if a question requires multiple lookups.\n\n" +
+        "Do NOT search for simple greetings or questions clearly unrelated to tutoring.\n\n" +
+        "When search results are available, base your answer on them and mention the source document name if provided. Keep answers concise and focused — do not add information not found in the search results. If no relevant results are found, say so honestly.",
+      stopWhen: stepCountIs(4),
+      messages: await convertToModelMessages(trimmedMessages),
       tools,
     });
     return result.toUIMessageStreamResponse();
