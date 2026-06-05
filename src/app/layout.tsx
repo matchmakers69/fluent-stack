@@ -1,6 +1,8 @@
 import { ClerkProvider } from "@clerk/nextjs";
+import { getLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { fontsClassName } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -40,6 +42,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <ClerkProvider>{children}</ClerkProvider>;
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale().catch(() => "pl");
+
+  return (
+    <html lang={locale} suppressHydrationWarning className={`${fontsClassName} h-full`}>
+      <body className={`${fontsClassName} scroll-touch antialiased`}>
+        <ClerkProvider>{children}</ClerkProvider>
+      </body>
+    </html>
+  );
 }

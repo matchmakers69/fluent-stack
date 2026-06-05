@@ -2,7 +2,6 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
-import { fontsClassName } from "@/lib/fonts";
 import type { Metadata } from "next";
 import { buildAlternates, buildOpenGraph } from "@/lib/seo";
 import { personSchema, educationalOrganizationSchema } from "@/lib/structured-data";
@@ -45,21 +44,19 @@ export default async function LocaleLayout({
   const l = locale as SupportedLocale;
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`${fontsClassName} h-full`}>
-      <body className={`${fontsClassName} scroll-touch antialiased`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(l)) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(educationalOrganizationSchema(l)),
-          }}
-        />
-        <NextTopLoader color="oklch(0.72 0.19 152)" showSpinner={true} />
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(l)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(educationalOrganizationSchema(l)),
+        }}
+      />
+      <NextTopLoader color="oklch(0.72 0.19 152)" showSpinner={true} />
+      <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+    </>
   );
 }

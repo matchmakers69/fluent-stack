@@ -18,6 +18,7 @@ npm run lint     # Run ESLint
 - /docs/architecture.md — read before creating any new file, folder, route or component
 - /docs/auth.md — read before touching anything auth-related (Clerk, middleware, protected routes, webhooks)
 - /docs/i18n.md — read before adding any visible text, creating pages, or touching navigation
+- /docs/data-mutations.md — read before writing any Server Action, database query, or src/data/ helper
 
 No test runner is configured yet.
 

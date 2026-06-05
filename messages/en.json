@@ -48,6 +48,20 @@
     "nav": "Navigation",
     "copyright": "© {year} Fluent Stack. All rights reserved."
   },
+  "uploads": {
+    "label": "Materials",
+    "title": "Upload a document",
+    "description": "Add a PDF file that will be processed and used as learning material.",
+    "dropzone": "Drag and drop a PDF here",
+    "dropNow": "Drop the PDF",
+    "pdfOnly": "PDF files only · max 1 file",
+    "browse": "Browse files",
+    "processing": "Processing PDF…",
+    "successTitle": "Done!",
+    "uploadAnother": "Upload another",
+    "errorTitle": "Something went wrong",
+    "tryAgain": "Try again"
+  },
   "notFound": {
     "title": "Page not found",
     "description": "We can't find the page you're looking for. Maybe it's a typo or the page moved somewhere else?",

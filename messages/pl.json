@@ -48,6 +48,20 @@
     "nav": "Nawigacja",
     "copyright": "© {year} Fluent Stack. Wszelkie prawa zastrzeżone."
   },
+  "uploads": {
+    "label": "Materiały",
+    "title": "Prześlij dokument",
+    "description": "Dodaj plik PDF, który zostanie przetworzony i wykorzystany jako materiał do nauki.",
+    "dropzone": "Przeciągnij i upuść plik PDF tutaj",
+    "dropNow": "Upuść plik PDF",
+    "pdfOnly": "Tylko pliki PDF · maks. 1 plik",
+    "browse": "Wybierz plik",
+    "processing": "Przetwarzam plik PDF…",
+    "successTitle": "Gotowe!",
+    "uploadAnother": "Prześlij kolejny",
+    "errorTitle": "Wystąpił błąd",
+    "tryAgain": "Spróbuj ponownie"
+  },
   "notFound": {
     "title": "Strona nie istnieje",
     "description": "Nie możemy znaleźć strony, której szukasz. Może literówka albo strona przeniosła się w inne miejsce?",
