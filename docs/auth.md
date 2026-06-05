@@ -15,8 +15,6 @@ The middleware only handles Clerk token validation and i18n routing — it does 
 
 Do NOT add route protection to the middleware. Because `localePrefix: "as-needed"` omits the locale prefix for the default language (pl), URL patterns like `/:locale/materialy(.*)` never match Polish routes. Middleware-level matchers are unreliable here.
 
-Do NOT use `auth.protect()` — this project uses modal auth with no `/sign-in` page.
-
 ## Route Protection
 
 Protect authenticated routes in the **layout** of the relevant route group. All protected routes (`/dashboard`, `/lekcje`, `/materialy`) live under `src/app/[locale]/(dashboard)/` and are guarded by that group's `layout.tsx`:
@@ -85,7 +83,5 @@ function AuthButtons() {
 ## Rules
 
 - Never use cookies, JWTs, or sessions manually
-- Never build custom auth forms — use Clerk modal
-- Never create `/sign-in` or `/sign-up` pages
 - No webhooks in MVP scope
 - Auth button styles defined in `/docs/ui.md` — always use them
