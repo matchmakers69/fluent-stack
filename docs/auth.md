@@ -1,40 +1,68 @@
 # Authentication — Clerk
 
-This project uses `@clerk/nextjs` for all authentication.
+This project uses @clerk/nextjs v7 for all authentication.
 No other auth library may be used.
 
 ## Provider
 
-`ClerkProvider` wraps the entire app in `src/app/layout.tsx` only.
+ClerkProvider wraps the entire app in src/app/layout.tsx only.
 Do not add it anywhere else.
 
-## Middleware
+## Middleware — src/proxy.ts
 
-`src/proxy.ts` (this project uses `proxy.ts` as the middleware file).
-The middleware only handles Clerk token validation and i18n routing — it does **not** enforce route protection.
+Middleware handles ONLY Clerk token validation and i18n routing.
+Route protection is NOT done in middleware.
+Reason: localePrefix "as-needed" means Polish routes have no
+locale prefix so path matchers never match Polish URLs.
+Always protect in layout instead.
 
-Do NOT add route protection to the middleware. Because `localePrefix: "as-needed"` omits the locale prefix for the default language (pl), URL patterns like `/:locale/materialy(.*)` never match Polish routes. Middleware-level matchers are unreliable here.
+## Route Protection — in layout.tsx
 
-## Route Protection
-
-Protect authenticated routes in the **layout** of the relevant route group. All protected routes (`/dashboard`, `/lekcje`, `/materialy`) live under `src/app/[locale]/(dashboard)/` and are guarded by that group's `layout.tsx`:
+(dashboard) layout — students:
 
 ```ts
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { userId } = await auth();
-  if (!userId) redirect("/");
-  return <>{children}</>;
+import { auth } from "@clerk/nextjs/server"
+import { redirect } from "next/navigation"
+export default async function DashboardLayout({ children }) {
+  const { userId } = await auth()
+  if (!userId) redirect("/authentication/sign-in")
+  return <>{children}</>
 }
 ```
 
-Unauthenticated users are redirected to `/` (home page). Any new protected route added under `(dashboard)/` is automatically covered.
+(admin) layout — admin only:
 
-## Modal mode — no auth pages needed
+```ts
+import { auth } from "@clerk/nextjs/server"
+import { redirect } from "next/navigation"
+export default async function AdminLayout({ children }) {
+  const { userId, sessionClaims } = await auth()
+  if (!userId) redirect("/authentication/sign-in")
+  if (sessionClaims?.metadata?.role !== "admin") redirect("/")
+  return <>{children}</>
+}
+```
 
-Auth uses modal mode. There are no `/sign-in` or `/sign-up` pages.
+## Auth pages
+
+Dedicated pages — no modal mode:
+
+- /authentication/sign-in → src/app/[locale]/(auth)/authentication/sign-in/page.tsx
+- /authentication/sign-up → src/app/[locale]/(auth)/authentication/sign-up/page.tsx
+
+```tsx
+// sign-in/page.tsx
+import { SignIn } from "@clerk/nextjs";
+export default function SignInPage() {
+  return <SignIn afterSignInUrl="/dashboard" signUpUrl="/authentication/sign-up" />;
+}
+
+// sign-up/page.tsx
+import { SignUp } from "@clerk/nextjs";
+export default function SignUpPage() {
+  return <SignUp afterSignUpUrl="/dashboard" signInUrl="/authentication/sign-in" />;
+}
+```
 
 ## Reading current user
 
@@ -42,7 +70,7 @@ Server components:
 
 ```ts
 import { auth, currentUser } from "@clerk/nextjs/server";
-const { userId } = await auth();
+const { userId, sessionClaims } = await auth();
 ```
 
 Client components:
@@ -53,35 +81,80 @@ import { useUser } from "@clerk/nextjs";
 const { user, isLoaded } = useUser();
 ```
 
-## Auth UI — always use our Button variants
+## Admin role check
 
-`SignedIn`/`SignedOut` do not exist in `@clerk/nextjs` v7. Use `useUser()` to branch on auth state.
+```ts
+// server
+const { sessionClaims } = await auth();
+const isAdmin = sessionClaims?.metadata?.role === "admin";
+
+// client
+const { user } = useUser();
+const isAdmin = user?.publicMetadata?.role === "admin";
+```
+
+## Auth UI in Navbar
+
+SignedIn/SignedOut do not exist in @clerk/nextjs v7.
+Use useUser() to branch. Use Link from @/i18n/navigation.
 
 ```tsx
 "use client";
-import { SignInButton, SignUpButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 
 function AuthButtons() {
   const { isSignedIn } = useUser();
-
-  if (isSignedIn) return <UserButton />;
-
   return (
-    <>
-      <SignInButton mode="modal">
-        <Button variant="auth-signin">Sign In</Button>
-      </SignInButton>
-      <SignUpButton mode="modal">
-        <Button variant="auth-signup">Sign Up</Button>
-      </SignUpButton>
-    </>
+    <div className="flex items-center gap-3">
+      <Button asChild variant="auth-signup">
+        <Link href="/umow-konsultacje">Umów konsultację</Link>
+      </Button>
+      <Button asChild variant="auth-signin">
+        <Link href={isSignedIn ? "/dashboard" : "/authentication/sign-in"}>Panel Ucznia</Link>
+      </Button>
+      {isSignedIn && <UserButton />}
+    </div>
   );
 }
 ```
 
+## Navbar nav links
+
+Only two nav links — booking is a CTA button, not a nav link:
+
+```ts
+const navLinks = [
+  { label: t("home"), href: "/" },
+  { label: t("about"), href: "/o-mnie" },
+  { label: t("contact"), href: "/kontakt" },
+];
+```
+
+## Environment variables (.env)
+
+## Admin setup in Clerk Dashboard
+
+1. Clerk Dashboard → Users → your account
+2. Edit Public Metadata: { "role": "admin" }
+3. This grants access to all (admin) routes
+
+## Route groups summary
+
+| Group       | Path                | Protection      |
+| ----------- | ------------------- | --------------- |
+| (marketing) | /                   | none            |
+| (booking)   | /umow-konsultacje   | none            |
+| (auth)      | /authentication/\*  | none            |
+| (dashboard) | /dashboard, /lekcje | userId required |
+| (admin)     | /uploads            | role=admin      |
+
 ## Rules
 
 - Never use cookies, JWTs, or sessions manually
+- Never call auth.protect() in middleware
+- Always protect in layout.tsx of the route group
+- SignedIn/SignedOut components do not exist in v7
 - No webhooks in MVP scope
-- Auth button styles defined in `/docs/ui.md` — always use them
+- Auth button styles defined in /docs/ui.md
