@@ -1,5 +1,11 @@
+import { AuthNavbar, Footer } from "@/components/shared";
+
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">{children}</div>
+    <div className="flex flex-col min-h-screen">
+      <AuthNavbar />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 export { Navbar } from "./Navbar";
+export { AuthNavbar } from "./AuthNavbar";
 export { Logo } from "./Logo";
 export { LanguageSwitcher } from "./LanguageSwitcher";
 export { SectionHeading } from "./SectionHeading";
