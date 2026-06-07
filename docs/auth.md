@@ -54,13 +54,13 @@ Dedicated pages — no modal mode:
 // sign-in/page.tsx
 import { SignIn } from "@clerk/nextjs";
 export default function SignInPage() {
-  return <SignIn afterSignInUrl="/dashboard" signUpUrl="/authentication/sign-up" />;
+  return <SignIn fallbackRedirectUrl="/dashboard" signUpUrl="/authentication/sign-up" />;
 }
 
 // sign-up/page.tsx
 import { SignUp } from "@clerk/nextjs";
 export default function SignUpPage() {
-  return <SignUp afterSignUpUrl="/dashboard" signInUrl="/authentication/sign-in" />;
+  return <SignUp fallbackRedirectUrl="/dashboard" signInUrl="/authentication/sign-in" />;
 }
 ```
 

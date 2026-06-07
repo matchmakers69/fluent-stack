@@ -227,6 +227,18 @@
     }
   }
 
+  .hero-auth {
+    background-image: url("/images/auth/register-hero.jpg");
+  }
+
+  .hero-auth::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: oklch(0.52 0.16 268 / 0.62);
+    z-index: 0;
+  }
+
   .container-narrow {
     width: 100%;
     max-width: var(--container-narrow);

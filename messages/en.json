@@ -61,6 +61,18 @@
     "errorTitle": "Something went wrong",
     "tryAgain": "Try again"
   },
+  "authentication": {
+    "signIn": {
+      "label": "Sign in",
+      "title": "Welcome back",
+      "description": "Continue your English learning journey."
+    },
+    "signUp": {
+      "label": "Registration",
+      "title": "Join us",
+      "description": "Create your account and start learning English."
+    }
+  },
   "notFound": {
     "title": "Page not found",
     "description": "We can't find the page you're looking for. Maybe it's a typo or the page moved somewhere else?",

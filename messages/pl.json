@@ -61,6 +61,18 @@
     "errorTitle": "Wystąpił błąd",
     "tryAgain": "Spróbuj ponownie"
   },
+  "authentication": {
+    "signIn": {
+      "label": "Logowanie",
+      "title": "Zaloguj się",
+      "description": "Witaj z powrotem — kontynuuj naukę angielskiego."
+    },
+    "signUp": {
+      "label": "Rejestracja",
+      "title": "Dołącz do nas",
+      "description": "Stwórz konto i rozpocznij swoją przygodę z angielskim."
+    }
+  },
   "notFound": {
     "title": "Strona nie istnieje",
     "description": "Nie możemy znaleźć strony, której szukasz. Może literówka albo strona przeniosła się w inne miejsce?",
