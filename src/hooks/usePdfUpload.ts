@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useDropzone, type FileRejection } from "react-dropzone";
-import { processPdfFile } from "@/app/[locale]/(marketing)/uploads/actions";
+import { processPdfFile } from "@/app/[locale]/(admin)/uploads/actions";
 
 type UploadStatus =
   | { type: "idle" }

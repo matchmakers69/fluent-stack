@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
 import type { SupportedLocale } from "@/lib/seo";
 
@@ -32,17 +33,19 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     title: m.title,
     description: m.description,
     keywords: m.keywords,
-    alternates: buildAlternates(l, "/rezerwacja"),
+    alternates: buildAlternates(l, "/umow-konsultacje"),
     openGraph: buildOpenGraph({
       title: m.title,
       description: m.description,
       locale: l,
-      path: "/rezerwacja",
+      path: "/umow-konsultacje",
     }),
     twitter: buildTwitterCard({ title: m.title, description: m.description }),
   };
 }
 
-export default function RezerwacjaPage() {
-  return <h1>Rezerwacja</h1>;
+export default async function UmowKonsultacjePage({ params }: { params: Params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "booking" });
+  return <h1>{t("title")}</h1>;
 }

@@ -1,30 +1,32 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
-import { SignInButton, SignUpButton, SignOutButton, UserButton, useUser } from "@clerk/nextjs";
+import { routing } from "@/i18n/routing";
+import { SignOutButton, UserButton, useUser } from "@clerk/nextjs";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
+type AppPathname = keyof typeof routing.pathnames;
+
 function AuthButtons() {
   const { isSignedIn } = useUser();
   const t = useTranslations("navigation");
 
-  if (isSignedIn) {
-    return <UserButton />;
-  }
-
   return (
-    <>
-      <SignInButton mode="modal">
-        <Button variant="auth-signin">{t("signIn")}</Button>
-      </SignInButton>
-      <SignUpButton mode="modal">
-        <Button variant="auth-signup">{t("signUp")}</Button>
-      </SignUpButton>
-    </>
+    <div className="flex items-center gap-3">
+      <Button asChild variant="auth-signup">
+        <Link href="/umow-konsultacje">{t("booking")}</Link>
+      </Button>
+      <Button asChild variant="auth-signin">
+        <Link href={isSignedIn ? "/dashboard" : "/authentication/sign-in"}>
+          {t("studentPanel")}
+        </Link>
+      </Button>
+      {isSignedIn && <UserButton />}
+    </div>
   );
 }
 
@@ -32,30 +34,23 @@ function MobileAuthButtons() {
   const { isSignedIn } = useUser();
   const t = useTranslations("navigation");
 
-  if (isSignedIn) {
-    return (
-      <div className="flex flex-col gap-3 pb-8">
+  return (
+    <div className="flex flex-col gap-3 pb-8">
+      <Button asChild variant="auth-signup" className="w-full">
+        <Link href="/umow-konsultacje">{t("booking")}</Link>
+      </Button>
+      <Button asChild variant="auth-signin" className="w-full">
+        <Link href={isSignedIn ? "/dashboard" : "/authentication/sign-in"}>
+          {t("studentPanel")}
+        </Link>
+      </Button>
+      {isSignedIn && (
         <SignOutButton>
           <Button variant="auth-signout" className="w-full">
             {t("signOut")}
           </Button>
         </SignOutButton>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex flex-col gap-3 pb-8">
-      <SignInButton mode="modal">
-        <Button variant="auth-signin" className="w-full">
-          {t("signIn")}
-        </Button>
-      </SignInButton>
-      <SignUpButton mode="modal">
-        <Button variant="auth-signup" className="w-full">
-          {t("signUp")}
-        </Button>
-      </SignUpButton>
+      )}
     </div>
   );
 }
@@ -74,7 +69,7 @@ export function Navbar() {
 
   const textColor = scrolled ? "text-white" : "text-foreground";
 
-  const navLinks = [
+  const navLinks: Array<{ label: string; href: AppPathname }> = [
     { label: t("home"), href: "/" },
     { label: t("about"), href: "/o-mnie" },
     { label: t("contact"), href: "/kontakt" },

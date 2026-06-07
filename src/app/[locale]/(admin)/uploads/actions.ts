@@ -30,13 +30,11 @@ export async function processPdfFile(
     const chunks = await chunkContent(pdfData.text);
     const embeddings = await generateEmbeddings(chunks);
 
-    // Prepare data for database
     const records = chunks.map((chunk, index) => ({
       content: chunk,
       sourceFileName: file.name,
       embedding: embeddings[index],
     }));
-    // Insert into database
     await insertDocuments(records);
 
     return { success: true, message: `Successfully processed ${records.length} chunks` };

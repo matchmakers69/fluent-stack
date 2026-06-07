@@ -1,15 +1,18 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { Logo } from "./Logo";
+
+type AppPathname = keyof typeof routing.pathnames;
 
 export async function Footer() {
   const t = await getTranslations("footer");
   const tNav = await getTranslations("navigation");
 
-  const navLinks = [
+  const navLinks: Array<{ label: string; href: AppPathname }> = [
     { label: tNav("home"), href: "/" },
     { label: tNav("about"), href: "/o-mnie" },
-    { label: tNav("booking"), href: "/rezerwacja" },
+    { label: tNav("booking"), href: "/umow-konsultacje" },
     { label: tNav("contact"), href: "/kontakt" },
   ];
 

@@ -5,13 +5,13 @@
 This project uses Next.js App Router route groups to separate
 concerns without affecting URLs.
 
-| Group       | URL prefix     | Auth required | Purpose                   |
-| ----------- | -------------- | ------------- | ------------------------- |
-| (marketing) | /              | No            | Home, about page          |
-| (booking)   | /rezerwacja    | No            | Public calendar & booking |
-| (dashboard) | /dashboard etc | Yes (Clerk)   | Student area              |
-
-Auth is handled via Clerk modals — no auth route group or pages needed.
+| Group       | URL               | Auth     | Purpose          |
+|-------------|-------------------|----------|------------------|
+| (marketing) | /                 | No       | Home, about      |
+| (booking)   | /umow-konsultacje | No       | Booking page     |
+| (auth)      | /authentication/* | No       | Sign in, sign up |
+| (dashboard) | /dashboard etc    | User     | Student area     |
+| (admin)     | /uploads etc      | Admin    | Admin only       |
 
 All route groups live under src/app/[locale]/.
 The locale segment is handled automatically by next-intl.
@@ -33,9 +33,9 @@ Components live in src/components/ organised by feature:
 
 ## Middleware
 
-src/middleware.ts uses Clerk's clerkMiddleware to protect
-all (dashboard) routes. Public routes require no changes —
-they are public by default.
+src/proxy.ts handles Clerk token validation and i18n routing only.
+Route protection is done in each route group's layout.tsx — never in middleware.
+See /docs/auth.md for protection patterns.
 
 ## Key Rules
 

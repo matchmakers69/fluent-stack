@@ -2,10 +2,9 @@
   "navigation": {
     "home": "Strona główna",
     "about": "O mnie",
-    "booking": "Rezerwacja",
     "contact": "Kontakt",
-    "signIn": "Zaloguj się",
-    "signUp": "Zarejestruj się",
+    "booking": "Umów konsultację",
+    "studentPanel": "Panel Ucznia",
     "signOut": "Wyloguj się"
   },
   "languages": {
@@ -20,7 +19,7 @@
     "title": "O mnie"
   },
   "booking": {
-    "title": "Rezerwacja lekcji"
+    "title": "Umów konsultację"
   },
   "dashboard": {
     "title": "Twoje lekcje"

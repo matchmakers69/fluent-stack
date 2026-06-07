@@ -2,10 +2,9 @@
   "navigation": {
     "home": "Home",
     "about": "About me",
-    "booking": "Book a lesson",
     "contact": "Contact",
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
+    "booking": "Book a consultation",
+    "studentPanel": "Student Panel",
     "signOut": "Sign Out"
   },
   "languages": {
@@ -20,7 +19,7 @@
     "title": "About me"
   },
   "booking": {
-    "title": "Book a lesson"
+    "title": "Book a consultation"
   },
   "dashboard": {
     "title": "Your lessons"
