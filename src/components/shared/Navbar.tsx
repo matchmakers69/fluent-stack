@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { HamburgerButton } from "./HamburgerButton";
 import { cn } from "@/lib/utils";
 
 type AppPathname = keyof typeof routing.pathnames;
@@ -58,8 +59,19 @@ function MobileAuthButtons() {
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const { isSignedIn } = useUser();
   const t = useTranslations("navigation");
+
+  const openMenu = () => {
+    setHamburgerOpen(true);
+    setTimeout(() => setMenuOpen(true), 350);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setHamburgerOpen(false);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -112,13 +124,11 @@ export function Navbar() {
           {/* Mobile right side */}
           <div className="flex lg:hidden items-center gap-3">
             {isSignedIn && <UserButton />}
-            <button
-              onClick={() => setMenuOpen(true)}
-              className={cn("font-bold text-2xl leading-none", textColor)}
-              aria-label="Open menu"
-            >
-              ☰
-            </button>
+            <HamburgerButton
+              isOpen={hamburgerOpen}
+              onToggle={hamburgerOpen ? closeMenu : openMenu}
+              className={textColor}
+            />
           </div>
         </div>
       </nav>
@@ -129,8 +139,8 @@ export function Navbar() {
           <div className="flex justify-between items-center">
             <Logo className="text-white" />
             <button
-              onClick={() => setMenuOpen(false)}
-              className="text-white font-bold text-3xl leading-none"
+              onClick={closeMenu}
+              className="text-white font-bold text-3xl leading-none cursor-pointer"
               aria-label="Close menu"
             >
               ✕
@@ -142,7 +152,7 @@ export function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                   className="text-white font-bold text-3xl hover:opacity-80 transition-opacity"
                 >
                   {label}
