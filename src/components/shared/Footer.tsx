@@ -23,7 +23,7 @@ export async function Footer() {
       <div className="wrapper py-12 md:py-16">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="flex flex-col gap-4">
-            <Logo className="text-white" />
+            <Logo variant="light" />
             <p className="text-white/70 text-sm max-w-[260px] leading-relaxed">{t("tagline")}</p>
           </div>
 

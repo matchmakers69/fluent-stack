@@ -66,6 +66,10 @@
       "label": "Logowanie",
       "title": "Zaloguj się",
       "description": "Witaj z powrotem — kontynuuj naukę angielskiego.",
+      "hero": {
+        "headline": "Wróć do nauki.",
+        "subtext": "Twój angielski czeka — kontynuuj od miejsca, w którym skończyłeś."
+      },
       "form": {
         "email": "Email",
         "emailPlaceholder": "twoj@email.com",
@@ -89,6 +93,10 @@
       "label": "Rejestracja",
       "title": "Dołącz do nas",
       "description": "Stwórz konto i rozpocznij swoją przygodę z angielskim.",
+      "hero": {
+        "headline": "Zacznij mówić po angielsku.",
+        "subtext": "Dołącz do programistów, którzy uczą się angielskiego technicznego i biznesowego."
+      },
       "form": {
         "email": "Email",
         "emailPlaceholder": "twoj@email.com",
@@ -123,6 +131,55 @@
         "errors": {
           "codeRequired": "Kod weryfikacyjny jest wymagany",
           "general": "Weryfikacja nie powiodła się. Spróbuj ponownie."
+        }
+      }
+    },
+    "ssoCallback": {
+      "label": "Logowanie Google",
+      "title": "Już prawie",
+      "description": "Finalizujemy Twoje logowanie. Chwileczkę.",
+      "hero": {
+        "headline": "Prawie gotowe.",
+        "subtext": "Logujemy Cię przez Google — to tylko chwila."
+      }
+    },
+    "forgotPassword": {
+      "label": "Resetowanie hasła",
+      "title": "Nie pamiętasz hasła?",
+      "description": "Podaj adres email, a wyślemy Ci kod do resetowania hasła.",
+      "hero": {
+        "headline": "Zdarza się.",
+        "subtext": "Zresetuj hasło i wróć do nauki w mniej niż minutę."
+      },
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "twoj@email.com",
+        "submit": "Wyślij kod resetujący",
+        "loading": "Wysyłanie...",
+        "backToSignIn": "Pamiętasz hasło?",
+        "signInLink": "Zaloguj się",
+        "errors": {
+          "emailRequired": "Email jest wymagany",
+          "invalidEmail": "Podaj prawidłowy adres email",
+          "general": "Coś poszło nie tak. Spróbuj ponownie."
+        }
+      },
+      "reset": {
+        "title": "Ustaw nowe hasło",
+        "description": "Wprowadź kod z emaila i wybierz nowe hasło.",
+        "code": "Kod resetujący",
+        "codePlaceholder": "6-cyfrowy kod",
+        "password": "Nowe hasło",
+        "submit": "Resetuj hasło",
+        "loading": "Resetowanie...",
+        "errors": {
+          "codeRequired": "Kod resetujący jest wymagany",
+          "passwordMin": "Hasło musi mieć co najmniej 8 znaków",
+          "passwordMax": "Hasło może mieć maksymalnie 30 znaków",
+          "passwordUppercase": "Hasło musi zawierać co najmniej jedną wielką literę",
+          "passwordNumber": "Hasło musi zawierać co najmniej jedną cyfrę",
+          "passwordSpecial": "Hasło musi zawierać co najmniej jeden znak specjalny",
+          "general": "Resetowanie nie powiodło się. Spróbuj ponownie."
         }
       }
     }

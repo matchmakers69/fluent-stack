@@ -17,7 +17,7 @@ function AuthButtons() {
   const t = useTranslations("navigation");
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-6">
       <Button asChild variant="auth-signup">
         <Link href="/umow-konsultacje">{t("booking")}</Link>
       </Button>
@@ -80,6 +80,7 @@ export function Navbar() {
   }, []);
 
   const textColor = scrolled ? "text-white" : "text-foreground";
+  const logoVariant = scrolled ? "light" : "dark";
 
   const navLinks: Array<{ label: string; href: AppPathname }> = [
     { label: t("home"), href: "/" },
@@ -96,11 +97,11 @@ export function Navbar() {
         )}
       >
         <div className="px-6 lg:px-12 flex items-center justify-between h-full">
-          <Logo className={textColor} />
+          <Logo variant={logoVariant} />
 
           {/* Desktop nav links + auth */}
-          <div className="hidden lg:flex items-stretch h-full gap-10">
-            <ul className="flex items-stretch h-full gap-8">
+          <div className="hidden lg:flex items-stretch h-full gap-8">
+            <ul className="flex items-stretch h-full gap-6">
               {navLinks.map(({ label, href }) => (
                 <li key={href} className="flex items-stretch">
                   <Link
@@ -115,14 +116,14 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <AuthButtons />
               <LanguageSwitcher scrolled={scrolled} />
             </div>
           </div>
 
           {/* Mobile right side */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex lg:hidden items-center gap-4">
             {isSignedIn && <UserButton />}
             <HamburgerButton
               isOpen={hamburgerOpen}
@@ -137,7 +138,7 @@ export function Navbar() {
       {menuOpen && (
         <div className="fixed inset-0 z-50 bg-[oklch(0.18_0.12_280/95%)] flex flex-col px-6 py-4">
           <div className="flex justify-between items-center">
-            <Logo className="text-white" />
+            <Logo variant="light" />
             <button
               onClick={closeMenu}
               className="text-white font-bold text-3xl leading-none cursor-pointer"

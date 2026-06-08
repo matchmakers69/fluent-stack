@@ -1,17 +1,4 @@
-import { Unbounded, Geist_Mono, Archivo_Black, Anton } from "next/font/google";
-
-const unboundedFont = Unbounded({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-unbounded",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const geistMonoFont = Geist_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-geist-mono",
-});
+import { Geist_Mono, Archivo_Black, Space_Grotesk } from "next/font/google";
 
 const archivoBlackFont = Archivo_Black({
   subsets: ["latin"],
@@ -20,12 +7,18 @@ const archivoBlackFont = Archivo_Black({
   weight: "400",
 });
 
-const antonFont = Anton({
+const spaceGroteskFont = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-accent",
-  weight: "400",
+  variable: "--font-space-grotesk",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const fonts = [unboundedFont, geistMonoFont, archivoBlackFont, antonFont];
+const geistMonoFont = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist-mono",
+});
+
+const fonts = [geistMonoFont, archivoBlackFont, spaceGroteskFont];
 export const fontsClassName = fonts.map((f) => f.variable).join(" ");

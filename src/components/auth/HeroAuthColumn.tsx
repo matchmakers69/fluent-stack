@@ -1,4 +1,5 @@
-import React from "react";
+import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 
 interface HeroAuthColumnProps {
   image?: string;
@@ -11,11 +12,22 @@ export function HeroAuthColumn({
 }: HeroAuthColumnProps) {
   return (
     <div
-      className="fixed right-0 top-0 hidden min-h-full w-[50%] hero-auth bg-cover bg-center bg-no-repeat lg:flex lg:flex-col"
+      className="relative flex h-80 w-full flex-shrink-0 flex-col overflow-hidden hero-auth bg-cover bg-center bg-no-repeat lg:fixed lg:right-0 lg:top-0 lg:h-auto lg:min-h-full lg:w-[50%]"
       style={{ backgroundImage: `url('${image}')` }}
     >
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-4 p-10 text-white">
-        {children}
+      <div className="relative z-10 flex flex-1 items-center justify-center p-8 text-white lg:p-12">
+        <div className="flex w-full max-w-md flex-col gap-6 lg:gap-10">
+          <Link href="/">
+            <Image
+              src="/logos/logo-light.svg"
+              alt="Fluent Stack"
+              width={150}
+              height={38}
+              priority
+            />
+          </Link>
+          {children}
+        </div>
       </div>
     </div>
   );

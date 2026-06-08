@@ -31,11 +31,11 @@ export function AuthNavbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-background h-[5.625rem]">
+      <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-background h-22.5">
         <div className="px-6 lg:px-12 flex items-center justify-between h-full">
-          <Logo />
+          <Logo variant="dark" />
 
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-4">
             {navLinks.map(({ label, href }) => (
               <Link
                 key={href}
@@ -48,7 +48,7 @@ export function AuthNavbar() {
             <LanguageSwitcher />
           </div>
 
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex lg:hidden items-center gap-4">
             <LanguageSwitcher />
             <HamburgerButton
               isOpen={hamburgerOpen}
@@ -62,7 +62,7 @@ export function AuthNavbar() {
       {menuOpen && (
         <div className="fixed inset-0 z-50 bg-[oklch(0.18_0.12_280/95%)] flex flex-col px-6 py-4">
           <div className="flex justify-between items-center">
-            <Logo className="text-white" />
+            <Logo variant="light" />
             <button
               onClick={closeMenu}
               className="text-white font-bold text-3xl leading-none cursor-pointer"

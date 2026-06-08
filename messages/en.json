@@ -66,6 +66,10 @@
       "label": "Sign in",
       "title": "Welcome back",
       "description": "Continue your English learning journey.",
+      "hero": {
+        "headline": "Back to learning.",
+        "subtext": "Your English is waiting — pick up where you left off."
+      },
       "form": {
         "email": "Email",
         "emailPlaceholder": "your@email.com",
@@ -89,6 +93,10 @@
       "label": "Registration",
       "title": "Join us",
       "description": "Create your account and start learning English.",
+      "hero": {
+        "headline": "Start speaking English.",
+        "subtext": "Join developers learning technical and business English."
+      },
       "form": {
         "email": "Email",
         "emailPlaceholder": "your@email.com",
@@ -123,6 +131,55 @@
         "errors": {
           "codeRequired": "Verification code is required",
           "general": "Verification failed. Please try again."
+        }
+      }
+    },
+    "ssoCallback": {
+      "label": "Google sign-in",
+      "title": "Just a moment",
+      "description": "We're completing your sign-in. This will only take a second.",
+      "hero": {
+        "headline": "Almost there.",
+        "subtext": "Signing you in with Google — just a moment."
+      }
+    },
+    "forgotPassword": {
+      "label": "Password reset",
+      "title": "Forgot your password?",
+      "description": "Enter your email and we'll send you a reset code.",
+      "hero": {
+        "headline": "Happens to everyone.",
+        "subtext": "Reset your password and get back to learning in under a minute."
+      },
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "your@email.com",
+        "submit": "Send reset code",
+        "loading": "Sending...",
+        "backToSignIn": "Remember your password?",
+        "signInLink": "Sign in",
+        "errors": {
+          "emailRequired": "Email is required",
+          "invalidEmail": "Enter a valid email address",
+          "general": "Something went wrong. Please try again."
+        }
+      },
+      "reset": {
+        "title": "Enter your new password",
+        "description": "Enter the code from your email and choose a new password.",
+        "code": "Reset code",
+        "codePlaceholder": "6-digit code",
+        "password": "New password",
+        "submit": "Reset password",
+        "loading": "Resetting...",
+        "errors": {
+          "codeRequired": "Reset code is required",
+          "passwordMin": "Password must be at least 8 characters",
+          "passwordMax": "Password must be at most 30 characters",
+          "passwordUppercase": "Password must contain at least one uppercase letter",
+          "passwordNumber": "Password must contain at least one number",
+          "passwordSpecial": "Password must contain at least one special character",
+          "general": "Reset failed. Please try again."
         }
       }
     }
