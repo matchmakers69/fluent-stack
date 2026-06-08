@@ -65,12 +65,66 @@
     "signIn": {
       "label": "Sign in",
       "title": "Welcome back",
-      "description": "Continue your English learning journey."
+      "description": "Continue your English learning journey.",
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "your@email.com",
+        "password": "Password",
+        "forgotPassword": "Forgot your password?",
+        "submit": "Sign in",
+        "loading": "Signing in...",
+        "noAccount": "Don't have an account?",
+        "signUpLink": "Sign up",
+        "googleButton": "Continue with Google",
+        "errors": {
+          "emailRequired": "Email is required",
+          "invalidEmail": "Enter a valid email address",
+          "passwordRequired": "Password is required",
+          "googleOnly": "This account uses Google Sign In. Please use the button below.",
+          "general": "Authentication failed. Please check your credentials."
+        }
+      }
     },
     "signUp": {
       "label": "Registration",
       "title": "Join us",
-      "description": "Create your account and start learning English."
+      "description": "Create your account and start learning English.",
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "your@email.com",
+        "password": "Password",
+        "submit": "Create account",
+        "loading": "Creating account...",
+        "alreadyHaveAccount": "Already have an account?",
+        "signInLink": "Sign in",
+        "googleButton": "Continue with Google",
+        "errors": {
+          "emailRequired": "Email is required",
+          "invalidEmail": "Enter a valid email address",
+          "passwordRequired": "Password is required",
+          "passwordMin": "Password must be at least 8 characters",
+          "passwordMax": "Password must be at most 30 characters",
+          "passwordUppercase": "Password must contain at least one uppercase letter",
+          "passwordNumber": "Password must contain at least one number",
+          "passwordSpecial": "Password must contain at least one special character",
+          "general": "Something went wrong. Please try again."
+        }
+      },
+      "verify": {
+        "title": "Check your inbox",
+        "description": "Enter the 6-digit code we sent to your email address.",
+        "code": "Verification code",
+        "codePlaceholder": "6-digit code",
+        "submit": "Verify",
+        "verifying": "Verifying...",
+        "noCode": "Didn't receive a code?",
+        "resend": "Resend",
+        "resendSuccess": "Code sent!",
+        "errors": {
+          "codeRequired": "Verification code is required",
+          "general": "Verification failed. Please try again."
+        }
+      }
     }
   },
   "notFound": {

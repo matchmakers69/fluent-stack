@@ -65,12 +65,66 @@
     "signIn": {
       "label": "Logowanie",
       "title": "Zaloguj się",
-      "description": "Witaj z powrotem — kontynuuj naukę angielskiego."
+      "description": "Witaj z powrotem — kontynuuj naukę angielskiego.",
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "twoj@email.com",
+        "password": "Hasło",
+        "forgotPassword": "Nie pamiętasz hasła?",
+        "submit": "Zaloguj się",
+        "loading": "Logowanie...",
+        "noAccount": "Nie masz jeszcze konta?",
+        "signUpLink": "Zarejestruj się",
+        "googleButton": "Kontynuuj z Google",
+        "errors": {
+          "emailRequired": "Email jest wymagany",
+          "invalidEmail": "Podaj prawidłowy adres email",
+          "passwordRequired": "Hasło jest wymagane",
+          "googleOnly": "To konto używa logowania przez Google. Użyj przycisku poniżej.",
+          "general": "Logowanie nie powiodło się. Sprawdź swoje dane."
+        }
+      }
     },
     "signUp": {
       "label": "Rejestracja",
       "title": "Dołącz do nas",
-      "description": "Stwórz konto i rozpocznij swoją przygodę z angielskim."
+      "description": "Stwórz konto i rozpocznij swoją przygodę z angielskim.",
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "twoj@email.com",
+        "password": "Hasło",
+        "submit": "Utwórz konto",
+        "loading": "Tworzenie konta...",
+        "alreadyHaveAccount": "Masz już konto?",
+        "signInLink": "Zaloguj się",
+        "googleButton": "Kontynuuj z Google",
+        "errors": {
+          "emailRequired": "Email jest wymagany",
+          "invalidEmail": "Podaj prawidłowy adres email",
+          "passwordRequired": "Hasło jest wymagane",
+          "passwordMin": "Hasło musi mieć co najmniej 8 znaków",
+          "passwordMax": "Hasło może mieć maksymalnie 30 znaków",
+          "passwordUppercase": "Hasło musi zawierać co najmniej jedną wielką literę",
+          "passwordNumber": "Hasło musi zawierać co najmniej jedną cyfrę",
+          "passwordSpecial": "Hasło musi zawierać co najmniej jeden znak specjalny",
+          "general": "Coś poszło nie tak. Spróbuj ponownie."
+        }
+      },
+      "verify": {
+        "title": "Sprawdź skrzynkę",
+        "description": "Wprowadź 6-cyfrowy kod, który wysłaliśmy na Twój adres email.",
+        "code": "Kod weryfikacyjny",
+        "codePlaceholder": "6-cyfrowy kod",
+        "submit": "Zweryfikuj",
+        "verifying": "Weryfikowanie...",
+        "noCode": "Nie otrzymałeś kodu?",
+        "resend": "Wyślij ponownie",
+        "resendSuccess": "Kod wysłany!",
+        "errors": {
+          "codeRequired": "Kod weryfikacyjny jest wymagany",
+          "general": "Weryfikacja nie powiodła się. Spróbuj ponownie."
+        }
+      }
     }
   },
   "notFound": {

@@ -28,8 +28,12 @@ export function ContactForm() {
   const t = useTranslations("contact");
 
   const contactSchema = z.object({
-    name: z.string().min(2, t("form.nameError")),
-    email: z.string().email(t("form.emailError")),
+    name: z.string().trim().min(2, t("form.nameError")),
+    email: z
+      .string()
+      .trim()
+      .min(1, t("form.emailError"))
+      .check(z.email({ error: t("form.emailError") })),
     message: z.string().min(10, t("form.messageError")),
   });
 

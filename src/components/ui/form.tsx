@@ -12,6 +12,7 @@ import {
 } from "react-hook-form";
 
 import { Label } from "@/components/ui/label";
+import { FieldError } from "@/components/ui/field-error";
 import { cn } from "@/lib/utils";
 
 const Form = FormProvider;
@@ -118,23 +119,21 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   );
 }
 
-function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
+function FormMessage({ className, children }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message ?? "") : props.children;
+  const body = error ? String(error?.message ?? "") : (children as string | undefined);
 
   if (!body) {
     return null;
   }
 
   return (
-    <p
-      data-slot="form-message"
+    <FieldError
       id={formMessageId}
-      className={cn("text-destructive text-sm font-medium", className)}
-      {...props}
-    >
-      {body}
-    </p>
+      data-slot="form-message"
+      message={body}
+      className={className}
+    />
   );
 }
 

@@ -227,10 +227,6 @@
     }
   }
 
-  .hero-auth {
-    background-image: url("/images/auth/register-hero.jpg");
-  }
-
   .hero-auth::before {
     content: "";
     position: absolute;

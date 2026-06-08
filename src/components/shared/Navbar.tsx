@@ -91,7 +91,7 @@ export function Navbar() {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-[5.625rem]",
+          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-22.5",
           scrolled ? "bg-navy" : "bg-transparent"
         )}
       >

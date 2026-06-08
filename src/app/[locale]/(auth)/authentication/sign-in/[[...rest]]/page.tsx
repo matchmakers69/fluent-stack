@@ -1,7 +1,6 @@
-import { CredentialColumn, HeroAuthColumn } from "@/components/auth";
+import { CredentialColumn, HeroAuthColumn, SignInForm } from "@/components/auth";
 import { SectionHeading } from "@/components/shared";
 import { useTranslations } from "next-intl";
-import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   const t = useTranslations("authentication");
@@ -14,10 +13,10 @@ export default function SignInPage() {
             title={t("signIn.title")}
             description={t("signIn.description")}
           />
-          <SignIn fallbackRedirectUrl="/dashboard" signUpUrl="/authentication/sign-up" />
+          <SignInForm />
         </div>
       </CredentialColumn>
-      <HeroAuthColumn />
+      <HeroAuthColumn image="/images/auth/login-hero.jpg" />
     </section>
   );
 }

@@ -39,5 +39,6 @@ export const routing = defineRouting({
     "/uploads": "/uploads",
     "/authentication/sign-in": "/authentication/sign-in",
     "/authentication/sign-up": "/authentication/sign-up",
+    "/authentication/forgot-password": "/authentication/forgot-password",
   },
 });

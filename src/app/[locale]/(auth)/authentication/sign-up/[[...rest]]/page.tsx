@@ -1,12 +1,11 @@
-import { CredentialColumn, HeroAuthColumn } from "@/components/auth";
+import { CredentialColumn, HeroAuthColumn, SignUpForm } from "@/components/auth";
 import { SectionHeading } from "@/components/shared";
 import { useTranslations } from "next-intl";
-import { SignUp } from "@clerk/nextjs";
 
 export default function SignUpPage() {
   const t = useTranslations("authentication");
   return (
-    <>
+    <section className="flex w-full pt-22.5">
       <CredentialColumn>
         <div className="flex flex-col gap-8 w-full">
           <SectionHeading
@@ -14,10 +13,10 @@ export default function SignUpPage() {
             title={t("signUp.title")}
             description={t("signUp.description")}
           />
-          <SignUp fallbackRedirectUrl="/dashboard" signInUrl="/authentication/sign-in" />
+          <SignUpForm />
         </div>
       </CredentialColumn>
-      <HeroAuthColumn />
-    </>
+      <HeroAuthColumn image="/images/auth/register-hero.jpg" />
+    </section>
   );
 }
