@@ -27,7 +27,7 @@ export function HeroSlider() {
   return (
     // Mobile: fixed aspect-ratio height so the slider has dimensions.
     // Desktop (lg): absolute inset-0 fills the full-height parent column.
-    <div className="relative w-full h-[60vw] lg:absolute lg:inset-0 overflow-hidden">
+    <div className="relative w-full h-[60vw] lg:h-auto lg:absolute lg:inset-0 overflow-hidden">
 
       {/* Cross-dissolve + Ken Burns scale — all rendered, opacity/scale toggled */}
       {slides.map((slide, i) => (

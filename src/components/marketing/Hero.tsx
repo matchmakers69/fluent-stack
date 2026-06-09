@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { HeroHeading } from "./HeroHeading";
 import { HeroSlider } from "./HeroSlider";
+import { TypewritingSlogan } from "./TypewritingSlogan";
 
 export function Hero() {
   const t = useTranslations("home");
@@ -21,9 +22,10 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hero-text-intro flex flex-col justify-center overflow-hidden py-24 md:py-0 relative w-full items-center scroll-touch lg:min-h-screen lg:w-[50%]">
-        <div className="flex w-full max-w-150 flex-col px-6 py-8">
+      <div className="hero-text-intro flex flex-col justify-center overflow-hidden py-4 md:py-0 relative w-full items-center scroll-touch lg:min-h-screen lg:w-[50%]">
+        <div className="flex w-full intro-content gap-2 lg:max-w-150 flex-col px-6 lg:px-20 py-8 lg:py-10">
           <HeroHeading />
+          <TypewritingSlogan />
         </div>
       </div>
     </section>
