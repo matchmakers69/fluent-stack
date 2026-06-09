@@ -185,6 +185,11 @@
       }
     }
   },
+  "chat": {
+    "openLabel": "Porozmawiaj ze mną",
+    "closeLabel": "Zamknij czat",
+    "disclaimer": "Odpowiadam tylko na pytania dotyczące kursu."
+  },
   "notFound": {
     "title": "Strona nie istnieje",
     "description": "Nie możemy znaleźć strony, której szukasz. Może literówka albo strona przeniosła się w inne miejsce?",

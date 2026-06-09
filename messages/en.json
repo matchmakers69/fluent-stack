@@ -185,6 +185,11 @@
       }
     }
   },
+  "chat": {
+    "openLabel": "Talk to me",
+    "closeLabel": "Close chat",
+    "disclaimer": "I only answer questions about this course."
+  },
   "notFound": {
     "title": "Page not found",
     "description": "We can't find the page you're looking for. Maybe it's a typo or the page moved somewhere else?",

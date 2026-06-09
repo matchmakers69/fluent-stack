@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "@ai-sdk/react";
+import { useTranslations } from "next-intl";
 import { MessageCircle, Send, X } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ export function ChatWidget() {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   // useChat defaults to /api/chat; AI SDK 5 uses sendMessage instead of append
+  const t = useTranslations("chat");
   const { messages, sendMessage, status } = useChat();
   const isLoading = status === "submitted" || status === "streaming";
   const isLimitReached = messages.length >= MESSAGE_LIMIT;
@@ -52,12 +54,15 @@ export function ChatWidget() {
           )}
         >
           {/* Header */}
-          <CardHeader className="flex shrink-0 flex-row items-center justify-between border-b px-5 py-2">
-            <span className="text-sm font-semibold">Chat</span>
+          <CardHeader className="flex shrink-0 flex-row items-center justify-between border-b px-5 py-3">
+            <div className="flex flex-col gap-0.5">
+              <span className="text-sm font-semibold">Chat</span>
+              <span className="text-xs text-muted-foreground">{t("disclaimer")}</span>
+            </div>
             <Button
               variant="ghost"
               size="icon"
-              aria-label="Close chat"
+              aria-label={t("closeLabel")}
               onClick={() => setOpen(false)}
               className="size-8 md:size-8 rounded-full"
             >
@@ -151,14 +156,25 @@ export function ChatWidget() {
       )}
 
       {/* Toggle FAB */}
-      <Button
-        size="icon-lg"
-        onClick={() => setOpen((prev) => !prev)}
-        aria-label={open ? "Close chat" : "Open chat"}
-        className="size-12 rounded-full shadow-lg"
-      >
-        {open ? <X className="size-5" /> : <MessageCircle className="size-5" />}
-      </Button>
+      {open ? (
+        <Button
+          size="icon-lg"
+          onClick={() => setOpen(false)}
+          aria-label={t("closeLabel")}
+          className="size-12 rounded-full shadow-lg"
+        >
+          <X className="size-5" />
+        </Button>
+      ) : (
+        <Button
+          onClick={() => setOpen(true)}
+          aria-label={t("openLabel")}
+          className="h-12 rounded-full shadow-lg px-5 gap-2"
+        >
+          <MessageCircle className="size-5" />
+          {t("openLabel")}
+        </Button>
+      )}
     </div>
   );
 }
