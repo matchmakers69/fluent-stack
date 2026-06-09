@@ -92,8 +92,8 @@ export function Navbar() {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-22.5",
-          scrolled ? "bg-navy" : "bg-transparent"
+          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-22.5 border-b",
+          scrolled ? "bg-navy border-transparent" : "bg-white border-border"
         )}
       >
         <div className="px-6 lg:px-12 flex items-center justify-between h-full">

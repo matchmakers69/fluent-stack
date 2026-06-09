@@ -49,6 +49,8 @@
   --color-card: var(--card);
   --color-navy: var(--navy);
   --color-form-stroke: var(--form-stroke);
+  --color-uk-blue: var(--uk-blue);
+  --color-uk-red: var(--uk-red);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -120,6 +122,9 @@
 
   /* form-stroke — border + shadow colour for contact form inputs */
   --form-stroke: oklch(0.28 0.22 278);
+
+  --uk-blue: #012169;
+  --uk-red: #c8102e;
 }
 
 .dark {
@@ -272,6 +277,7 @@
     background-size: 28px 28px;
     background-attachment: fixed;
     line-height: 1.5;
+    overflow-x: hidden;
   }
   button {
     font-family: var(--font-space-grotesk), sans-serif;
