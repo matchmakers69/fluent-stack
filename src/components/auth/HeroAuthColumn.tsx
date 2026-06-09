@@ -12,7 +12,7 @@ export function HeroAuthColumn({
 }: HeroAuthColumnProps) {
   return (
     <div
-      className="relative flex h-80 w-full flex-shrink-0 flex-col overflow-hidden hero-auth bg-cover bg-center bg-no-repeat lg:fixed lg:right-0 lg:top-0 lg:h-auto lg:min-h-full lg:w-[50%]"
+      className="relative flex h-auto w-full shrink-0 flex-col overflow-hidden hero-auth bg-cover bg-center bg-no-repeat lg:fixed lg:right-0 lg:top-0 lg:h-auto lg:min-h-full lg:w-[50%]"
       style={{ backgroundImage: `url('${image}')` }}
     >
       <div className="relative z-10 flex flex-1 items-center justify-center p-8 text-white lg:p-12">
