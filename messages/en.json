@@ -25,7 +25,33 @@
     "title": "Book a consultation"
   },
   "account": {
-    "title": "Your lessons"
+    "title": "Your lessons",
+    "profile": {
+      "label": "Account",
+      "title": "My profile",
+      "description": "Manage your personal information",
+      "editButton": "Edit profile",
+      "cancelButton": "Cancel",
+      "saveButton": "Save changes",
+      "saving": "Saving...",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "phonePlaceholder": "Enter phone number",
+      "photoTitle": "Profile picture",
+      "photoDescription": "Upload a new picture to personalise your account",
+      "photoButton": "Change picture",
+      "toastUpdateSuccess": "Profile updated!",
+      "toastUpdateError": "Failed to update profile. Please try again.",
+      "toastImageSuccess": "Profile picture updated!",
+      "toastImageError": "Failed to update profile picture. Please try again.",
+      "toastImageSize": "Image must be less than 1 MB",
+      "firstNameRequired": "First name is required",
+      "firstNameMax": "First name must not exceed 50 characters",
+      "lastNameMax": "Last name must not exceed 50 characters",
+      "phoneInvalid": "Enter a valid phone number"
+    }
   },
   "contact": {
     "title": "Contact",

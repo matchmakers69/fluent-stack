@@ -25,7 +25,33 @@
     "title": "Umów konsultację"
   },
   "account": {
-    "title": "Twoje lekcje"
+    "title": "Twoje lekcje",
+    "profile": {
+      "label": "Konto",
+      "title": "Mój profil",
+      "description": "Zarządzaj swoimi danymi osobowymi",
+      "editButton": "Edytuj profil",
+      "cancelButton": "Anuluj",
+      "saveButton": "Zapisz zmiany",
+      "saving": "Zapisywanie...",
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "email": "Adres e-mail",
+      "phone": "Numer telefonu",
+      "phonePlaceholder": "Podaj numer telefonu",
+      "photoTitle": "Zdjęcie profilowe",
+      "photoDescription": "Prześlij nowe zdjęcie, aby spersonalizować swoje konto",
+      "photoButton": "Zmień zdjęcie",
+      "toastUpdateSuccess": "Profil zaktualizowany!",
+      "toastUpdateError": "Nie udało się zaktualizować profilu. Spróbuj ponownie.",
+      "toastImageSuccess": "Zdjęcie profilowe zaktualizowane!",
+      "toastImageError": "Nie udało się zaktualizować zdjęcia. Spróbuj ponownie.",
+      "toastImageSize": "Zdjęcie nie może przekraczać 1 MB",
+      "firstNameRequired": "Imię jest wymagane",
+      "firstNameMax": "Imię nie może przekraczać 50 znaków",
+      "lastNameMax": "Nazwisko nie może przekraczać 50 znaków",
+      "phoneInvalid": "Podaj poprawny numer telefonu"
+    }
   },
   "contact": {
     "title": "Kontakt",
