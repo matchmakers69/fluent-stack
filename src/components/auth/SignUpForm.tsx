@@ -111,7 +111,7 @@ export function SignUpForm() {
           setGeneralError(t('verify.errors.general'));
           return;
         }
-        router.push('/dashboard');
+        router.push('/account/profile');
       } else {
         setGeneralError(t('verify.errors.general'));
       }

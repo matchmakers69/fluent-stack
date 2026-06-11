@@ -14,7 +14,7 @@ Every mutation is a Server Action. There are no exceptions for mutations — use
 One `actions.ts` per route directory, co-located with the route that uses it:
 
 ```
-src/app/[locale]/(dashboard)/materialy/
+src/app/[locale]/(account)/materialy/
   page.tsx
   actions.ts      ← mutations for this route only
 ```

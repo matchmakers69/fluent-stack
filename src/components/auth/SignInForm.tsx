@@ -74,7 +74,7 @@ export function SignInForm() {
           setGeneralError(t("form.errors.general"));
           return;
         }
-        router.push("/dashboard");
+        router.push("/account/profile");
       } else {
         setGeneralError(t("form.errors.general"));
       }

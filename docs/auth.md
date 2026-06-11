@@ -18,12 +18,12 @@ Always protect in layout instead.
 
 ## Route Protection — in layout.tsx
 
-(dashboard) layout — students:
+(account) layout — students:
 
 ```ts
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
-export default async function DashboardLayout({ children }) {
+export default async function AccountLayout({ children }) {
   const { userId } = await auth()
   if (!userId) redirect("/authentication/sign-in")
   return <>{children}</>
@@ -54,13 +54,13 @@ Dedicated pages — no modal mode:
 // sign-in/page.tsx
 import { SignIn } from "@clerk/nextjs";
 export default function SignInPage() {
-  return <SignIn fallbackRedirectUrl="/dashboard" signUpUrl="/authentication/sign-up" />;
+  return <SignIn fallbackRedirectUrl="/account" signUpUrl="/authentication/sign-up" />;
 }
 
 // sign-up/page.tsx
 import { SignUp } from "@clerk/nextjs";
 export default function SignUpPage() {
-  return <SignUp fallbackRedirectUrl="/dashboard" signInUrl="/authentication/sign-in" />;
+  return <SignUp fallbackRedirectUrl="/account" signInUrl="/authentication/sign-in" />;
 }
 ```
 
@@ -112,7 +112,7 @@ function AuthButtons() {
         <Link href="/umow-konsultacje">Umów konsultację</Link>
       </Button>
       <Button asChild variant="auth-signin">
-        <Link href={isSignedIn ? "/dashboard" : "/authentication/sign-in"}>Panel Ucznia</Link>
+        <Link href={isSignedIn ? "/account" : "/authentication/sign-in"}>Panel Ucznia</Link>
       </Button>
       {isSignedIn && <UserButton />}
     </div>
@@ -147,7 +147,7 @@ const navLinks = [
 | (marketing) | /                   | none            |
 | (booking)   | /umow-konsultacje   | none            |
 | (auth)      | /authentication/\*  | none            |
-| (dashboard) | /dashboard, /lekcje | userId required |
+| (account)   | /account, /lekcje   | userId required |
 | (admin)     | /uploads            | role=admin      |
 
 ## Rules

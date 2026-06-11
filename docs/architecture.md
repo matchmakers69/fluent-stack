@@ -10,7 +10,7 @@ concerns without affecting URLs.
 | (marketing) | /                 | No       | Home, about      |
 | (booking)   | /umow-konsultacje | No       | Booking page     |
 | (auth)      | /authentication/* | No       | Sign in, sign up |
-| (dashboard) | /dashboard etc    | User     | Student area     |
+| (account)   | /account etc      | User     | Student area     |
 | (admin)     | /uploads etc      | Admin    | Admin only       |
 
 All route groups live under src/app/[locale]/.
@@ -28,7 +28,7 @@ Components live in src/components/ organised by feature:
   - shared/LanguageSwitcher — dropdown locale switcher, uses shadcn DropdownMenu, reads locales from src/i18n/routing.ts automatically
 - marketing/ Hero, pricing, testimonials
 - booking/ Calendar, booking form
-- dashboard/ Lesson cards, material list
+- account/ Lesson cards, material list
 - auth/ Clerk UI wrappers (SignInButton, SignUpButton, SignOutButton wrapped in project Button variants)
 
 ## Middleware

@@ -24,7 +24,7 @@ interface GoogleSignInButtonProps {
 export function GoogleSignInButton({
   label,
   flow = 'sign-in',
-  redirectUrl = '/dashboard',
+  redirectUrl = '/account/profile',
   redirectCallbackUrl = '/authentication/sso-callback',
 }: GoogleSignInButtonProps) {
   const { signIn } = useSignIn();

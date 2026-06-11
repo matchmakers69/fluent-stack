@@ -23,7 +23,7 @@ function AuthButtons({ scrolled = false }: { scrolled?: boolean }) {
         <Link href="/umow-konsultacje">{t("booking")}</Link>
       </Button>
       <Button asChild variant="auth-signin">
-        <Link href={isSignedIn ? "/dashboard" : "/authentication/sign-in"}>
+        <Link href={isSignedIn ? "/account/profile" : "/authentication/sign-in"}>
           {t("studentPanel")}
         </Link>
       </Button>
@@ -42,7 +42,7 @@ function MobileAuthButtons() {
         <Link href="/umow-konsultacje">{t("booking")}</Link>
       </Button>
       <Button asChild variant="auth-signin" className="w-full">
-        <Link href={isSignedIn ? "/dashboard" : "/authentication/sign-in"}>
+        <Link href={isSignedIn ? "/account/profile" : "/authentication/sign-in"}>
           {t("studentPanel")}
         </Link>
       </Button>

@@ -113,7 +113,7 @@ export function ForgotPasswordForm() {
           setGeneralError(t('reset.errors.general'));
           return;
         }
-        router.push('/dashboard');
+        router.push('/account/profile');
       } else {
         setGeneralError(t('reset.errors.general'));
       }

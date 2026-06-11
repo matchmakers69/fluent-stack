@@ -52,7 +52,7 @@ export function UserMenu({ scrolled = false }: UserMenuProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="cursor-pointer px-3 py-2 font-semibold"
-          onClick={() => router.push("/dashboard/profile")}
+          onClick={() => router.push("/account/profile")}
         >
           {t("manageAccount")}
         </DropdownMenuItem>

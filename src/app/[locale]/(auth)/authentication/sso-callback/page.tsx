@@ -24,8 +24,8 @@ export default function SSOCallbackPage() {
           <div className="flex flex-col items-center gap-4 py-6">
             <LoaderCircle className="size-10 animate-spin text-primary" aria-hidden />
             <AuthenticateWithRedirectCallback
-              signInFallbackRedirectUrl="/dashboard"
-              signUpFallbackRedirectUrl="/dashboard"
+              signInFallbackRedirectUrl="/account/profile"
+              signUpFallbackRedirectUrl="/account/profile"
             />
           </div>
         </div>

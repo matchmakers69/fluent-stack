@@ -27,15 +27,14 @@ export const routing = defineRouting({
       pl: "/egzaminy",
       en: "/exams",
     },
-    "/dashboard": "/dashboard",
-    "/dashboard/profile": "/dashboard/profile",
-    "/lekcje": {
-      pl: "/lekcje",
-      en: "/lessons",
+    "/account/profile": "/account/profile",
+    "/account/lekcje": {
+      pl: "/account/lekcje",
+      en: "/account/lessons",
     },
-    "/materialy": {
-      pl: "/materialy",
-      en: "/materials",
+    "/account/materialy": {
+      pl: "/account/materialy",
+      en: "/account/materials",
     },
     "/uploads": "/uploads",
     "/authentication/sign-in": "/authentication/sign-in",
