@@ -28,6 +28,7 @@ export const routing = defineRouting({
       en: "/exams",
     },
     "/dashboard": "/dashboard",
+    "/dashboard/profile": "/dashboard/profile",
     "/lekcje": {
       pl: "/lekcje",
       en: "/lessons",

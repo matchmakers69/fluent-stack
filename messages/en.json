@@ -5,7 +5,9 @@
     "contact": "Contact",
     "booking": "Book a consultation",
     "studentPanel": "Student Panel",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "manageAccount": "Manage account",
+    "accountMenu": "Account menu"
   },
   "languages": {
     "pl": "Polski",

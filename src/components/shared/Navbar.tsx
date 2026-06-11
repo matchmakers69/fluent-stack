@@ -2,17 +2,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { SignOutButton, UserButton, useUser } from "@clerk/nextjs";
+import { SignOutButton, useUser } from "@clerk/nextjs";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { HamburgerButton } from "./HamburgerButton";
+import { UserMenu } from "./UserMenu";
 import { cn } from "@/lib/utils";
 
 type AppPathname = keyof typeof routing.pathnames;
 
-function AuthButtons() {
+function AuthButtons({ scrolled = false }: { scrolled?: boolean }) {
   const { isSignedIn } = useUser();
   const t = useTranslations("navigation");
 
@@ -26,7 +27,7 @@ function AuthButtons() {
           {t("studentPanel")}
         </Link>
       </Button>
-      {isSignedIn && <UserButton />}
+      {isSignedIn && <UserMenu scrolled={scrolled} />}
     </div>
   );
 }
@@ -117,14 +118,14 @@ export function Navbar() {
               ))}
             </ul>
             <div className="flex items-center gap-6">
-              <AuthButtons />
+              <AuthButtons scrolled={scrolled} />
               <LanguageSwitcher scrolled={scrolled} />
             </div>
           </div>
 
           {/* Mobile right side */}
           <div className="flex lg:hidden items-center gap-4">
-            {isSignedIn && <UserButton />}
+            {isSignedIn && <UserMenu scrolled={scrolled} />}
             <HamburgerButton
               isOpen={hamburgerOpen}
               onToggle={hamburgerOpen ? closeMenu : openMenu}
