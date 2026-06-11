@@ -31,6 +31,8 @@
       "name": "Imię i nazwisko",
       "namePlaceholder": "Jan Kowalski",
       "nameError": "Imię musi mieć co najmniej 2 znaki",
+      "nameFormatError": "Imię może zawierać tylko litery, spacje, myślniki i apostrofy",
+      "nameMaxError": "Imię nie może przekraczać 50 znaków",
       "email": "Adres e-mail",
       "emailPlaceholder": "jan@example.com",
       "emailError": "Nieprawidłowy adres e-mail",
@@ -40,7 +42,9 @@
       "sectionLabel": "Formularz kontaktowy",
       "sectionTitle": "Napisz do mnie",
       "sectionDescription": "Wypełnij formularz, a odpiszę tak szybko, jak to możliwe.",
-      "submit": "Wyślij"
+      "submit": "Wyślij",
+      "successMessage": "Wiadomość wysłana! Odpiszę tak szybko, jak to możliwe.",
+      "errorMessage": "Coś poszło nie tak. Spróbuj ponownie."
     }
   },
   "footer": {

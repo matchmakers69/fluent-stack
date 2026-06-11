@@ -3,6 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+import { sendContactMessage } from "@/app/[locale]/(marketing)/kontakt/actions";
 
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/shared";
@@ -36,27 +38,17 @@ export function ContactForm() {
 
   async function onContactFormSubmit(_values: ContactFormValues) {
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(_values),
-      });
-      // Parse the server response
-      const data = await response.json();
-      // If the server response is successful, reset the form
-      if (data.success) {
+      const response = await sendContactMessage(_values);
+
+      if (response.success) {
         form.reset();
-        //Toaster here
-        // toast.success(data.message);
+        toast.success(response.message ?? t("form.successMessage"));
       } else {
-        //Toaster here
-        // toast.error(data.message || "Something went wrong");
-        //;
+        toast.error(response.message ?? t("form.errorMessage"));
       }
     } catch (error) {
       console.error(error);
+      toast.error(t("form.errorMessage"));
     }
   }
 

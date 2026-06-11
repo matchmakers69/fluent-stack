@@ -20,6 +20,7 @@ export async function POST(request: Request) {
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Message:</strong> ${message}</p>
       `;
+
     // Attempt to send the email, the HTML content for the email
 
     const success = await submitContactForm({

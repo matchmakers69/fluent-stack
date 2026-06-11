@@ -31,6 +31,8 @@
       "name": "Full name",
       "namePlaceholder": "John Smith",
       "nameError": "Name must be at least 2 characters",
+      "nameFormatError": "Name may only contain letters, spaces, hyphens, and apostrophes",
+      "nameMaxError": "Name must not exceed 50 characters",
       "email": "Email address",
       "emailPlaceholder": "john@example.com",
       "emailError": "Invalid email address",
@@ -40,7 +42,9 @@
       "sectionLabel": "Contact form",
       "sectionTitle": "Get in touch",
       "sectionDescription": "Fill in the form and I'll get back to you as soon as possible.",
-      "submit": "Send"
+      "submit": "Send",
+      "successMessage": "Message sent! I'll get back to you as soon as possible.",
+      "errorMessage": "Something went wrong. Please try again."
     }
   },
   "footer": {

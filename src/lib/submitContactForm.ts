@@ -11,7 +11,7 @@ export async function submitContactForm({
   html: string;
 }) {
   try {
-    const { data, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: "Fluent Stack <onboarding@resend.dev>", // Replace with your verified sender domain
       to: [to],
       subject, // Email subject line

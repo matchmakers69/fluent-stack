@@ -3,6 +3,7 @@ import { getLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { fontsClassName } from "@/lib/fonts";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={locale} suppressHydrationWarning className={`${fontsClassName} h-full`}>
       <body className={`${fontsClassName} scroll-touch antialiased`}>
         <ClerkProvider>{children}</ClerkProvider>
+        <Toaster richColors closeButton />
       </body>
     </html>
   );
