@@ -71,7 +71,7 @@ export function TypewritingSlogan() {
                   duration: BOX_FADE_DURATION,
                   ease: "easeInOut",
                 }}
-                className="mask-text absolute bottom-[3px] left-[1px] right-0 top-[3px] bg-navy"
+                className="mask-text absolute bottom-0.75 left-px right-0 top-0.75 bg-navy"
               />
             </motion.span>
           );

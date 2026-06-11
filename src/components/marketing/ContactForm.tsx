@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createContactSchema, type ContactFormValues } from "@/lib/validations/contact";
 
 const inputClass =
   "h-12 w-full rounded-[14px] border-2 border-[var(--form-stroke)] bg-white [box-shadow:3px_3px_0px_var(--form-stroke)] px-4 text-base placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:outline-none focus-visible:[box-shadow:4px_4px_0px_var(--form-stroke)] transition-[box-shadow]";
@@ -27,25 +27,37 @@ const textareaClass =
 export function ContactForm() {
   const t = useTranslations("contact");
 
-  const contactSchema = z.object({
-    name: z.string().trim().min(2, t("form.nameError")),
-    email: z
-      .string()
-      .trim()
-      .min(1, t("form.emailError"))
-      .check(z.email({ error: t("form.emailError") })),
-    message: z.string().min(10, t("form.messageError")),
-  });
-
-  type ContactFormValues = z.infer<typeof contactSchema>;
+  const contactSchema = createContactSchema(t);
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", message: "" },
   });
 
-  function onSubmit(_values: ContactFormValues) {
-    // Submission logic not yet implemented
+  async function onContactFormSubmit(_values: ContactFormValues) {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(_values),
+      });
+      // Parse the server response
+      const data = await response.json();
+      // If the server response is successful, reset the form
+      if (data.success) {
+        form.reset();
+        //Toaster here
+        // toast.success(data.message);
+      } else {
+        //Toaster here
+        // toast.error(data.message || "Something went wrong");
+        //;
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -56,7 +68,7 @@ export function ContactForm() {
         description={t("form.sectionDescription")}
       />
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+        <form onSubmit={form.handleSubmit(onContactFormSubmit)} className="w-full space-y-6">
           <FormField
             control={form.control}
             name="name"
