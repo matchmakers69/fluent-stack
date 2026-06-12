@@ -5,6 +5,14 @@ description: >
   where test engine + interpreter path/contract must be confirmed before execution.
 ---
 
+## FILE PLACEMENT
+
+- All e2e test files live in `/e2e/` folder in project root
+- File naming: `<feature>.spec.ts` (e.g. `contact.spec.ts`, `profile.spec.ts`)
+- One spec file per feature/page
+- Shared helpers and fixtures go in `/e2e/helpers/`
+- Never create test files outside `/e2e/`
+
 Build e2e via interpreter.
 
 ## Goal
