@@ -1,14 +1,25 @@
-# Data Mutations
+---
+name: data-mutations
+description: Layered data mutation pattern for this Next.js project. Use when writing Server Actions, database helpers, or any code that creates, updates, or deletes data. Enforces the Server Action → src/data/ → Drizzle ORM chain. Never skip a layer.
+---
 
-> Claude Code skill: `.claude/skills/data-mutation/SKILL.md`
-> All data mutations in this project follow a strict layered pattern:
-> **Server Action → `src/data/` helper → Drizzle ORM**.
+## PATTERN
 
-No layer may be skipped. No Drizzle calls in actions, no mutations in components.
+Every mutation follows this chain — no exceptions:
 
-## Server Actions
+```
+Client Component → Server Action (actions.ts) → src/data/ helper → Drizzle ORM
+```
 
-Every mutation is a Server Action. There are no exceptions for mutations — use Route Handlers only where documented below.
+No layer may be skipped:
+
+- No Drizzle imports in `actions.ts`
+- No Drizzle imports in components
+- No mutations outside `src/data/`
+
+---
+
+## SERVER ACTIONS
 
 ### File placement
 
@@ -17,17 +28,17 @@ One `actions.ts` per route directory, co-located with the route that uses it:
 ```
 src/app/[locale]/(account)/materialy/
   page.tsx
-  actions.ts      ← mutations for this route only
+  actions.ts   ← mutations for this route only
 ```
 
-Do not create a shared `actions.ts` or put actions in `src/lib/`.
+Never create a shared `actions.ts` or put actions in `src/lib/`.
 
-### Function signature rules
+### Function rules
 
 - Parameters must be typed — never `FormData`
-- All parameters must be validated with Zod `safeParse` before any `src/data/` call
-- Return `{ success: true, data? }` or `{ success: false, error: string }` — never throw to the client
-- Never call `redirect()` inside a Server Action — return the target path and let the Client Component call `router.push()`
+- Always validate with `ZodSchema.safeParse()` before any `src/data/` call
+- Always return `{ success: true, data? }` or `{ success: false, error: string }` — never throw to the client
+- Never call `redirect()` inside a Server Action — return the path and let the Client Component call `router.push()`
 
 ```ts
 // actions.ts
@@ -43,9 +54,7 @@ const CreateLessonSchema = z.object({
 
 export async function createLessonAction(input: z.infer<typeof CreateLessonSchema>) {
   const parsed = CreateLessonSchema.safeParse(input);
-  if (!parsed.success) {
-    return { success: false, error: "Invalid input" };
-  }
+  if (!parsed.success) return { success: false, error: "Invalid input" };
 
   try {
     const lesson = await createLesson(parsed.data);
@@ -75,28 +84,21 @@ export function CreateLessonForm() {
       // show result.error to the user
     }
   }
-
-  // ...
 }
 ```
 
-## Database layer — `src/data/`
+---
+
+## DATABASE LAYER — `src/data/`
 
 All Drizzle ORM queries live exclusively in `src/data/`. No file outside this directory may import `db` or write a Drizzle query.
 
 ### Auth ownership
 
-Every helper calls `auth()` internally and never accepts `userId` from the caller. Every write or delete on user-owned data must include `userId` in the `where` clause.
+Every helper resolves `auth()` internally — never accepts `userId` from the caller. Every write or delete on user-owned data must include `userId` in the `where` clause.
 
 ```ts
-// src/data/lessons.ts
-
-import { auth } from "@clerk/nextjs/server";
-import { db } from "@/lib/db";
-import { lessons } from "@/lib/schema";
-import { eq, and } from "drizzle-orm";
-
-// CORRECT — auth resolved inside, userId in where clause
+// src/data/lessons.ts — CORRECT
 export async function deleteLesson(lessonId: string) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthenticated");
@@ -104,7 +106,7 @@ export async function deleteLesson(lessonId: string) {
   await db.delete(lessons).where(and(eq(lessons.id, lessonId), eq(lessons.userId, userId)));
 }
 
-// WRONG — accepts userId from caller, cannot be trusted
+// WRONG — never accept userId from caller
 export async function deleteLesson(lessonId: string, userId: string) {
   await db.delete(lessons).where(eq(lessons.id, lessonId));
 }
@@ -120,24 +122,32 @@ export async function deleteLesson(lessonId: string, userId: string) {
 | Update    | `update` | `updateLesson` |
 | Delete    | `delete` | `deleteLesson` |
 
-## Route Handler exceptions
+---
 
-Use a Route Handler (`src/app/api/`) only when a Server Action cannot satisfy the requirement:
+## ROUTE HANDLER EXCEPTIONS
+
+Use `src/app/api/` Route Handlers only when a Server Action cannot satisfy the requirement:
 
 | Scenario                                 | Reason                                              |
 | ---------------------------------------- | --------------------------------------------------- |
 | AI streaming responses                   | Server Actions cannot stream                        |
 | Webhooks (Stripe, Clerk, etc.)           | Must be a public POST endpoint with raw body access |
-| Contact forms and other public endpoints | May need to work without authentication or session  |
+| Contact forms and other public endpoints | May need to work without auth or session            |
 | Custom HTTP headers or status codes      | Server Actions always return 200                    |
 
-For everything else, use a Server Action. When in doubt, use a Server Action.
+For everything else — use a Server Action.
 
-## Rules summary
+---
 
-- Never call Drizzle directly in `actions.ts` or any component
-- Never accept `userId` as a parameter in `src/data/` helpers
-- Never use `FormData` as a Server Action parameter type
-- Never call `redirect()` inside a Server Action
-- Always validate with `z.schema.safeParse()` before touching the DB
-- Always include `userId` in `where` clauses for user-owned data
+## RULES CHECKLIST
+
+Before writing or reviewing any mutation code, verify:
+
+- [ ] No Drizzle query outside `src/data/`
+- [ ] No `db` import in `actions.ts` or any component
+- [ ] No `userId` accepted as parameter in `src/data/` helpers
+- [ ] No `FormData` as Server Action parameter type
+- [ ] No `redirect()` inside a Server Action
+- [ ] Every action validates input with `safeParse()` before touching data layer
+- [ ] Every user-owned query includes `userId` in `where` clause
+- [ ] `actions.ts` is co-located with its route, not shared

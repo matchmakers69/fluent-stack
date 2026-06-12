@@ -1,6 +1,7 @@
 # UI Coding Standards
 
 > See /docs/architecture.md for folder structure and component organisation rules.
+> Claude Code skill: `.claude/skills/ui-standards/SKILL.md`
 
 ## Component Library
 
