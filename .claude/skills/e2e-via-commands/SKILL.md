@@ -1,8 +1,8 @@
 ---
 name: e2e-via-commands
 description: >
-  Use when creating/extending e2e tests with step interpreter and shared commands,
-  where test engine + interpreter path/contract must be confirmed before execution.
+  Use when creating/extending e2e tests with Playwright,
+  following shared command patterns and visible-behavior rules.
 ---
 
 ## FILE PLACEMENT
@@ -13,61 +13,64 @@ description: >
 - Shared helpers and fixtures go in `/e2e/helpers/`
 - Never create test files outside `/e2e/`
 
-Build e2e via interpreter.
+## Setup
 
-## Goal
+Standard imports for every test file:
 
-Turn behavior spec into step map + interpreter execution.
+```ts
+import { test, expect } from '@playwright/test'
+```
 
-## Preflight (Mandatory)
+Run tests with: `npm run test:e2e`
 
-Before any test:
+## Before Writing Tests
 
-1. Resolve test engine:
-   - infer from user prompt/repo context if clear
-   - if not clear, ask user before writing tests
-2. Ask user for interpreter path (or propose found candidate).
-3. Resolve verification command type:
-   - infer from prompt/context if clear (`test`, `e2e`, `nx`, `pnpm`, etc.)
-   - if not clear, ask user which command to run for verification
-4. Confirm contract in 2-4 lines: command map shape, execute-call shape, async/error behavior.
-5. If engine, verification command, or contract unclear: stop, ask, no test writing.
-
-## Test Shape
-
-1. Import interpreter entry + test API from resolved engine.
-2. Put static mocks/fixtures first.
-3. Add `commands` object:
-   - key = readable step text
-   - value = fn `(page) => ...` or `async (page) => ...`
-4. Each `test(...)` runs steps through interpreter.
-5. Inline actions only for tiny one-off checks.
+If the page structure is unclear, use Playwright MCP to visually inspect the page first — navigate to it and take a screenshot to understand the layout, selectors, and flow.
 
 ## Command Rules
 
-- One command = one visible user/system behavior.
-- Use role/placeholder/text selectors only. No internals.
-- Await engine actions; no sleeps/timeouts.
-- Reuse command keys across tests; add new keys only for new behavior.
-- Test titles describe behavior, not implementation.
-- Assertions verify visible outcome.
+- One command = one visible user/system behavior
+- Use role/text/label selectors only — no internals, no CSS classes, no data-testid unless unavoidable
+- No sleeps or explicit timeouts — await Playwright actions and use `waitFor` only when necessary
+- Reuse command functions across tests; add new ones only for new behavior
+- Test titles describe behavior, not implementation
+- Assertions verify visible outcome (text, state, URL)
+
+## Test Shape
+
+```ts
+import { test, expect } from '@playwright/test'
+
+const commands = {
+  'go to contact page': async (page) => {
+    await page.goto('/contact')
+  },
+  'submit form with valid data': async (page) => {
+    await page.getByLabel('Email').fill('test@example.com')
+    await page.getByRole('button', { name: 'Send' }).click()
+  },
+}
+
+test('shows success message after submit', async ({ page }) => {
+  await commands['go to contact page'](page)
+  await commands['submit form with valid data'](page)
+  await expect(page.getByText('Message sent')).toBeVisible()
+})
+```
 
 ## Build Flow
 
-1. Read spec/requirements.
-2. Convert requirements into scenarios.
-3. Split into reusable commands.
-4. Add missing commands.
-5. Compose scenario by ordered step tuples.
-6. Assert visible outcomes.
-7. Add edge cases (bounds, back nav, invalid state).
+1. Read spec/requirements
+2. If page structure is unclear, inspect visually with Playwright MCP
+3. Convert requirements into scenarios
+4. Split into reusable commands
+5. Compose each test as ordered command calls
+6. Assert visible outcomes
+7. Add edge cases (invalid input, back nav, empty state)
 
 ## Done Criteria
 
-- Tests deterministic on repeat runs.
-- Engine explicitly resolved (inferred or user-confirmed).
-- Verification command type resolved (inferred or user-confirmed).
-- Interpreter path + contract documented before execution.
-- Shared setup via interpreter, no copy-paste flow blocks.
-- Assertions cover user-visible text/state.
-- File stays compact: commands block + script-like tests.
+- Tests are deterministic on repeat runs
+- Shared commands reused across tests — no copy-paste flow blocks
+- Assertions cover user-visible text/state
+- File stays compact: commands block + script-like tests

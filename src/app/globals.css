@@ -48,6 +48,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-navy: var(--navy);
+  --color-footer-bg: var(--footer-bg);
   --color-form-stroke: var(--form-stroke);
   --color-uk-blue: var(--uk-blue);
   --color-uk-red: var(--uk-red);
@@ -120,6 +121,9 @@
   /* navy — navbar scrolled state */
   --navy: oklch(0.42 0.22 278);
 
+  /* footer-bg — footer background */
+  --footer-bg: #21007D;
+
   /* form-stroke — border + shadow colour for contact form inputs */
   --form-stroke: oklch(0.28 0.22 278);
 
@@ -175,6 +179,9 @@
 
   /* navy — navbar scrolled state */
   --navy: oklch(0.42 0.22 278);
+
+  /* footer-bg — footer background */
+  --footer-bg: #21007D;
 }
 
 @layer components {

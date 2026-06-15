@@ -53,7 +53,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="w-full space-y-8">
+    <div id="contact-form-container" className="w-full space-y-8">
       <SectionHeading
         label={t("form.sectionLabel")}
         title={t("form.sectionTitle")}
