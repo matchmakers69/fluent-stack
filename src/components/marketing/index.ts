@@ -4,3 +4,4 @@ export { ContactHero } from "./ContactHero";
 export { ContactForm } from "./ContactForm";
 export { PdfUpload } from "./PdfUpload";
 export { TypewritingSlogan } from "./TypewritingSlogan";
+export { SocialLinks } from "./ContactSocialLinks";

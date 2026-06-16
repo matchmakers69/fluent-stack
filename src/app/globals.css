@@ -122,7 +122,7 @@
   --navy: oklch(0.42 0.22 278);
 
   /* footer-bg — footer background */
-  --footer-bg: #21007D;
+  --footer-bg: #21007d;
 
   /* form-stroke — border + shadow colour for contact form inputs */
   --form-stroke: oklch(0.28 0.22 278);
@@ -181,7 +181,7 @@
   --navy: oklch(0.42 0.22 278);
 
   /* footer-bg — footer background */
-  --footer-bg: #21007D;
+  --footer-bg: #21007d;
 }
 
 @layer components {
@@ -342,6 +342,11 @@
   span,
   li {
     font-size: clamp(0.8rem, 1vw, 0.9rem);
+  }
+
+  .flip-link,
+  .flip-link span {
+    font-size: inherit;
   }
 
   nav a,

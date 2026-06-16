@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
+import { SectionHeading } from "@/components/shared";
 import { ContactForm } from "./ContactForm";
+import { SocialLinks } from "./ContactSocialLinks";
 
 export function ContactHero() {
   const t = useTranslations("contact");
@@ -11,10 +13,13 @@ export function ContactHero() {
       </div>
 
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-[50%_50%]">
-        <div className="max-w-2xl w-full mx-auto flex flex-col px-8 md:px-16 lg:px-20 py-10 min-h-120 md:min-h-0">
+        <div className="lg:max-w-2xl w-full mx-auto flex flex-col px-8 md:px-16 lg:px-20 py-10">
           <ContactForm />
         </div>
-        <div className="hidden md:block" />
+        <div className="lg:max-w-2xl w-full mx-auto flex flex-col px-8 md:px-16 lg:px-20 py-10 gap-8">
+          <SectionHeading label={t("social.sectionLabel")} title={t("social.sectionTitle")} />
+          <SocialLinks />
+        </div>
       </div>
     </section>
   );

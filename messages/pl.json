@@ -73,6 +73,10 @@
       "submit": "Wyślij",
       "successMessage": "Wiadomość wysłana! Odpiszę tak szybko, jak to możliwe.",
       "errorMessage": "Coś poszło nie tak. Spróbuj ponownie."
+    },
+    "social": {
+      "sectionLabel": "Social",
+      "sectionTitle": "Połączmy się"
     }
   },
   "footer": {
