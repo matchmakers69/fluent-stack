@@ -14,10 +14,15 @@ for (const line of envContent.split("\n")) {
   env[key] = val
 }
 
-const { JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, JIRA_PROJECT_KEY } = env
+const { JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, JIRA_PROJECT_KEY, ANTHROPIC_API_KEY } = env
 
 if (!JIRA_BASE_URL || !JIRA_EMAIL || !JIRA_API_TOKEN || !JIRA_PROJECT_KEY) {
   console.error("Missing Jira env vars. Check your .env file.")
+  process.exit(1)
+}
+
+if (!ANTHROPIC_API_KEY) {
+  console.error("Missing ANTHROPIC_API_KEY. Check your .env file.")
   process.exit(1)
 }
 
@@ -82,6 +87,58 @@ function makeDescription(criteria) {
   }
 }
 
+async function generateStories(epicName, epicDescription) {
+  console.log("Generating stories with Claude AI...\n")
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-6",
+      max_tokens: 2048,
+      messages: [
+        {
+          role: "user",
+          content: `You are a product manager creating Jira User Stories for an English tutoring app called FluentStack.
+
+Project context:
+- App: FluentStack — English tutoring platform for Polish students
+- Users: maturzyści (students preparing for Polish high school English exam), programmers learning Business English
+- The app includes a marketing website, booking system, student dashboard, and AI-powered chatbot exercises
+
+Epic name: "${epicName}"
+Epic description: "${epicDescription}"
+
+Generate 5-6 User Stories for this epic. Each story must follow the format:
+"As a [user], I want to [action] so that [benefit]"
+
+Each story must have exactly 3 acceptance criteria in Given/When/Then format.
+
+Return ONLY a valid JSON array with no markdown, no explanation, no code blocks:
+[
+  {
+    "summary": "As a ...",
+    "criteria": ["Given ...", "When ...", "Then ..."]
+  }
+]`,
+        },
+      ],
+    }),
+  })
+
+  if (!res.ok) {
+    const error = await res.text()
+    throw new Error(`Anthropic API error ${res.status}: ${error}`)
+  }
+
+  const data = await res.json()
+  const text = data.content[0].text.trim()
+  return JSON.parse(text)
+}
+
 // Create Epic
 console.log(`Creating Epic: "${epicName}"...`)
 const epicBody = {
@@ -106,56 +163,7 @@ try {
   process.exit(1)
 }
 
-const stories = [
-  {
-    summary: "As a student, I want to see clue buttons during a chatbot conversation so that I can get contextual hints when I'm stuck",
-    criteria: [
-      "Given I'm in a chatbot conversation, when I struggle to respond, then I see one or more clue buttons below the chat input",
-      "When I click a clue button, then a relevant hint appears without revealing the full answer",
-      "When I view the chat on mobile, then the clue buttons are accessible and don't obstruct the input field",
-    ],
-  },
-  {
-    summary: "As a student, I want to request a grammar clue so that I can correct my sentence structure without being given the full answer",
-    criteria: [
-      "Given I'm composing a response, when I click the grammar clue button, then I receive a tip about the relevant grammar rule",
-      "When the grammar clue appears, then it highlights the specific part of speech or tense I should focus on",
-      "When I've already used the grammar clue once, then the button indicates it has been used",
-    ],
-  },
-  {
-    summary: "As a student, I want to request a vocabulary clue so that I can find the right word without giving up on the exercise",
-    criteria: [
-      "Given I'm unsure of a word, when I click the vocabulary clue button, then I receive a synonym, definition, or word fragment as a hint",
-      "When the vocabulary clue is shown, then it does not directly give away the target word but nudges me toward it",
-      "When I click the clue, then the hint appears inline in the chat without interrupting the conversation flow",
-    ],
-  },
-  {
-    summary: "As a student, I want to see how many clues I've used per exercise so that I can track my reliance on hints over time",
-    criteria: [
-      "Given I'm in an exercise session, when I use a clue, then a visible counter increments showing clues used",
-      "When the session ends, then a summary shows total clues used alongside my score or feedback",
-      "When I review past sessions, then clue usage is included in the session history",
-    ],
-  },
-  {
-    summary: "As a student, I want clues to be progressively revealed so that I'm encouraged to think before getting the full hint",
-    criteria: [
-      "Given I click a clue button, when it's my first click, then I receive a vague hint that prompts thinking",
-      "When I click the same clue button again, then I receive a more specific hint",
-      "When I click a third time, then I receive the most direct hint available for that item",
-    ],
-  },
-  {
-    summary: "As a teacher, I want to configure whether clue buttons are available for a given exercise so that I can control the level of support students receive",
-    criteria: [
-      "Given I'm editing an exercise in the admin panel, when I toggle clue availability, then students either see or don't see clue buttons for that exercise",
-      "When clues are disabled for an exercise, then no clue buttons appear in the student's chatbot view",
-      "When I save the exercise configuration, then the clue setting is persisted and applied immediately on next student load",
-    ],
-  },
-]
+const stories = await generateStories(epicName, epicDescription)
 
 console.log(`Creating ${stories.length} stories for epic ${epicKey}...\n`)
 
