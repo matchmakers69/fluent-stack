@@ -30,6 +30,7 @@ No test runner is configured yet.
 - **Tailwind CSS v4** (configured via PostCSS, not a config file)
 - **next-intl** (latest v4) — i18n, pl default, en secondary
 - **Typography**: Unbounded (body + h2-h6), Archivo Black (h1 + display), Anton (accent), Geist Mono (code) — loaded via `src/lib/fonts.ts`
+- **@t3-oss/env-core** — env validation, schema in src/env.ts
 
 ## Responsive Design
 
@@ -55,3 +56,5 @@ This is an App Router project. All routes live under `src/app/` following Next.j
 The locale layout (`src/app/[locale]/layout.tsx`) applies font CSS variables via `fontsClassName` from `src/lib/fonts.ts` and sets `<body>` as a flex column spanning full viewport height.
 
 Tailwind v4 uses `@import "tailwindcss"` in `globals.css` rather than `@tailwind` directives — no `tailwind.config.js` needed.
+
+Never use process.env directly in src/ — always import from @/env. Exception: scripts/ directory.

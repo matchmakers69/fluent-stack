@@ -1,6 +1,7 @@
 import { Resend } from "resend";
-// Initialize the Resend client with your API key
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { env } from "@/env";
+
+const resend = new Resend(env.RESEND_API_KEY);
 export async function submitContactForm({
   to,
   subject,

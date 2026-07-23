@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { env } from "@/env";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://fluentstack.pl";
+export const SITE_URL = env.NEXT_PUBLIC_SITE_URL ?? "https://fluentstack.pl";
 export const SITE_NAME = "FluentStack";
 export const TEACHER_NAME = "Przemek Lewtak";
 

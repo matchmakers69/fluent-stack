@@ -1,8 +1,10 @@
+import { env } from "@/env"
+
 export const jiraConfig = {
-  baseUrl: process.env.JIRA_BASE_URL!,
-  email: process.env.JIRA_EMAIL!,
-  token: process.env.JIRA_API_TOKEN!,
-  projectKey: process.env.JIRA_PROJECT_KEY!,
+  baseUrl: env.JIRA_BASE_URL,
+  email: env.JIRA_EMAIL,
+  token: env.JIRA_API_TOKEN,
+  projectKey: env.JIRA_PROJECT_KEY,
 }
 
 export function jiraAuthHeader() {
