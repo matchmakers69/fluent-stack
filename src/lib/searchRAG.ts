@@ -1,5 +1,5 @@
-import { db } from "@/db";
-import { documents } from "@/db/schema";
+import { db } from "@/shared/db";
+import { documents } from "@/shared/db/schema";
 import { cosineDistance, sql, gt, desc } from "drizzle-orm";
 import { getEmbedding } from "./embeddings";
 
