@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ContactHero } from "@/components/marketing";
+import { ContactHero } from "@/features/marketing/components/ContactHero";
 import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/shared/lib/seo";
 import type { SupportedLocale } from "@/shared/lib/seo";
 

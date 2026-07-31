@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hero } from "@/components/marketing";
+import { Hero } from "@/features/marketing/components/Hero";
 import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/shared/lib/seo";
 import { localBusinessSchema, faqPageSchema } from "@/shared/lib/structured-data";
 import type { SupportedLocale } from "@/shared/lib/seo";
