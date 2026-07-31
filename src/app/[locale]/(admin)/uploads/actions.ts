@@ -2,9 +2,9 @@
 
 import { z } from "zod";
 import pdf from "pdf-parse";
-import { insertDocuments } from "@/data/documents";
-import { generateEmbeddings } from "@/lib/embeddings";
-import { chunkContent } from "@/lib/chunking";
+import { insertDocuments } from "@/features/rag/data/documents";
+import { generateEmbeddings } from "@/features/rag/lib/embeddings";
+import { chunkContent } from "@/features/rag/lib/chunking";
 
 const PdfFileSchema = z
   .instanceof(File)
