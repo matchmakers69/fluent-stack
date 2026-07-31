@@ -2,7 +2,7 @@
 
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { z } from "zod";
-import { serverProfileSchema } from "@/lib/validations/profile";
+import { serverProfileSchema } from "@/features/account/lib/validations/profile";
 
 export async function updateProfileAction(input: z.infer<typeof serverProfileSchema>) {
   const { userId } = await auth();

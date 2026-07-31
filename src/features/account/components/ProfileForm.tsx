@@ -16,7 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/shared/components/ui/form";
-import { createProfileSchema, type ProfileFormValues } from "@/lib/validations/profile";
+import { createProfileSchema, type ProfileFormValues } from "@/features/account/lib/validations/profile";
 import { updateProfileAction } from "@/app/[locale]/(account)/account/profile/actions";
 
 const fieldClass =

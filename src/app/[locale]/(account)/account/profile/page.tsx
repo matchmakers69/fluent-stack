@@ -2,7 +2,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
 import { Card, CardContent } from "@/shared/components/ui/card";
 import { SectionHeading } from "@/shared/components/layout/SectionHeading";
-import { ProfileCard } from "@/components/account";
+import { ProfileCard } from "@/features/account/components/ProfileCard";
 
 export default async function ProfilePage() {
   const [user, t] = await Promise.all([
