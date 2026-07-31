@@ -1,7 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
-import { Card, CardContent } from "@/components/ui/card";
-import { SectionHeading } from "@/components/shared";
+import { Card, CardContent } from "@/shared/components/ui/card";
+import { SectionHeading } from "@/shared/components/layout/SectionHeading";
 import { ProfileCard } from "@/components/account";
 
 export default async function ProfilePage() {

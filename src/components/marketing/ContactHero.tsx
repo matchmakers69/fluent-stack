@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { SectionHeading } from "@/components/shared";
+import { SectionHeading } from "@/shared/components/layout/SectionHeading";
 import { ContactForm } from "./ContactForm";
 import { SocialLinks } from "./ContactSocialLinks";
 

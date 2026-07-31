@@ -3,7 +3,7 @@ import { getLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { SITE_URL, SITE_NAME } from "@/shared/lib/seo";
 import { fontsClassName } from "@/shared/lib/fonts";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/shared/components/ui/sonner";
 import { env } from "@/env";
 import "./globals.css";
 

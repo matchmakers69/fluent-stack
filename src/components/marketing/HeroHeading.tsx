@@ -1,4 +1,4 @@
-import { TextReveal } from "@/components/shared";
+import { TextReveal } from "@/shared/components/layout/TextReveal";
 
 export function HeroHeading() {
   return (

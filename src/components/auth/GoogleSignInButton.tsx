@@ -1,7 +1,7 @@
 'use client';
 
 import { useSignIn, useSignUp } from '@clerk/nextjs';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/components/ui/button';
 
 function GoogleIcon() {
   return (

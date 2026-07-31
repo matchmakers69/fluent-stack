@@ -6,8 +6,8 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { sendContactMessage } from "@/app/[locale]/(marketing)/kontakt/actions";
 
-import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/shared";
+import { Button } from "@/shared/components/ui/button";
+import { SectionHeading } from "@/shared/components/layout/SectionHeading";
 import {
   Form,
   FormControl,
@@ -15,9 +15,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/shared/components/ui/form";
+import { Input } from "@/shared/components/ui/input";
+import { Textarea } from "@/shared/components/ui/textarea";
 import { createContactSchema, type ContactFormValues } from "@/lib/validations/contact";
 
 const inputClass =

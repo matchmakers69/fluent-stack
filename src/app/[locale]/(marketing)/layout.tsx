@@ -1,5 +1,6 @@
 import { ChatWidget } from "@/components/chat/chat-widget";
-import { Navbar, Footer } from "@/components/shared";
+import { Navbar } from "@/shared/components/layout/Navbar";
+import { Footer } from "@/shared/components/layout/Footer";
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (

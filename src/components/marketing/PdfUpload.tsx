@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/utils";
 import { usePdfUpload } from "@/hooks/usePdfUpload";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/shared/components/ui/button";
+import { Alert, AlertDescription, AlertTitle } from "@/shared/components/ui/alert";
 import { Loader2, FileUp, CheckCircle2, XCircle } from "lucide-react";
 
 export function PdfUpload() {
