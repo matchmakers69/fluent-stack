@@ -3,7 +3,9 @@
 import { AuthenticateWithRedirectCallback } from '@clerk/nextjs';
 import { useTranslations } from 'next-intl';
 import { LoaderCircle } from 'lucide-react';
-import { CredentialColumn, HeroAuthColumn, HeroContent } from '@/components/auth';
+import { CredentialColumn } from "@/features/auth/components/CredentialColumn";
+import { HeroAuthColumn } from "@/features/auth/components/HeroAuthColumn";
+import { HeroContent } from "@/features/auth/components/HeroContent";
 import { SectionHeading } from "@/shared/components/layout/SectionHeading";
 
 export default function SSOCallbackPage() {
