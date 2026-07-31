@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/lib/utils";
-import { usePdfUpload } from "@/hooks/usePdfUpload";
+import { usePdfUpload } from "@/features/admin/hooks/usePdfUpload";
 import { Button } from "@/shared/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/shared/components/ui/alert";
 import { Loader2, FileUp, CheckCircle2, XCircle } from "lucide-react";
