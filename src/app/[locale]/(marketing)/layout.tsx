@@ -1,4 +1,4 @@
-import { ChatWidget } from "@/components/chat/chat-widget";
+import { ChatWidget } from "@/features/chat/components/chat-widget";
 import { Navbar } from "@/shared/components/layout/Navbar";
 import { Footer } from "@/shared/components/layout/Footer";
 
