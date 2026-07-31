@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
-import { buildAlternates, buildOpenGraph } from "@/lib/seo";
-import { personSchema, educationalOrganizationSchema } from "@/lib/structured-data";
-import type { SupportedLocale } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph } from "@/shared/lib/seo";
+import { personSchema, educationalOrganizationSchema } from "@/shared/lib/structured-data";
+import type { SupportedLocale } from "@/shared/lib/seo";
 import NextTopLoader from "nextjs-toploader";
 
 type Params = Promise<{ locale: string }>;

@@ -9,7 +9,7 @@ import { Logo } from "./Logo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { HamburgerButton } from "./HamburgerButton";
 import { UserMenu } from "./UserMenu";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 type AppPathname = keyof typeof routing.pathnames;
 

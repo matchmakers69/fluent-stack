@@ -1,7 +1,7 @@
 "use client";
 
 import { MotionConfig, motion } from "motion/react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 const VARIANTS = {
   top: {

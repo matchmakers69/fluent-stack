@@ -13,7 +13,7 @@ import {
 
 import { Label } from "@/components/ui/label";
 import { FieldError } from "@/components/ui/field-error";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 const Form = FormProvider;
 
