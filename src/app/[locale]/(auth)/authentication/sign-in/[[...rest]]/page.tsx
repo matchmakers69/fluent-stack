@@ -1,5 +1,8 @@
-import { CredentialColumn, HeroAuthColumn, HeroContent, SignInForm } from "@/components/auth";
-import { SectionHeading } from "@/components/shared";
+import { CredentialColumn } from "@/features/auth/components/CredentialColumn";
+import { HeroAuthColumn } from "@/features/auth/components/HeroAuthColumn";
+import { HeroContent } from "@/features/auth/components/HeroContent";
+import { SignInForm } from "@/features/auth/components/SignInForm";
+import { SectionHeading } from "@/shared/components/layout/SectionHeading";
 import { useTranslations } from "next-intl";
 
 export default function SignInPage() {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Hero } from "@/components/marketing";
-import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/lib/seo";
-import { localBusinessSchema, faqPageSchema } from "@/lib/structured-data";
-import type { SupportedLocale } from "@/lib/seo";
+import { Hero } from "@/features/marketing/components/Hero";
+import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/shared/lib/seo";
+import { localBusinessSchema, faqPageSchema } from "@/shared/lib/structured-data";
+import type { SupportedLocale } from "@/shared/lib/seo";
 
 type Params = Promise<{ locale: string }>;
 

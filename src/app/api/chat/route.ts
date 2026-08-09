@@ -9,7 +9,7 @@ import {
   stepCountIs,
 } from "ai";
 import { z } from "zod";
-import { searchDocuments } from "@/lib/searchRAG";
+import { searchDocuments } from "@/features/rag/lib/searchRAG";
 
 export type ChaTools = InferUITools<typeof tools>;
 export type ChatMessage = UIMessage<never, UIDataTypes, ChaTools>;
