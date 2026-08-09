@@ -29,7 +29,8 @@ No test runner is configured yet.
 - **TypeScript**
 - **Tailwind CSS v4** (configured via PostCSS, not a config file)
 - **next-intl** (latest v4) — i18n, pl default, en secondary
-- **Typography**: Unbounded (body + h2-h6), Archivo Black (h1 + display), Anton (accent), Geist Mono (code) — loaded via `src/lib/fonts.ts`
+- **Typography**: Unbounded (body + h2-h6), Archivo Black (h1 + display), Anton (accent), Geist Mono (code) — loaded via `src/shared/lib/fonts.ts`
+- **@t3-oss/env-core** — env validation, schema in src/env.ts
 
 ## Responsive Design
 
@@ -52,6 +53,28 @@ All components must be built mobile-first. Define base styles for mobile, then o
 
 This is an App Router project. All routes live under `src/app/` following Next.js file-system routing conventions — `page.tsx` for routes, `layout.tsx` for shared layouts, `loading.tsx`/`error.tsx` for async boundaries.
 
-The locale layout (`src/app/[locale]/layout.tsx`) applies font CSS variables via `fontsClassName` from `src/lib/fonts.ts` and sets `<body>` as a flex column spanning full viewport height.
+The locale layout (`src/app/[locale]/layout.tsx`) applies font CSS variables via `fontsClassName` from `src/shared/lib/fonts.ts` and sets `<body>` as a flex column spanning full viewport height.
 
 Tailwind v4 uses `@import "tailwindcss"` in `globals.css` rather than `@tailwind` directives — no `tailwind.config.js` needed.
+
+Never use process.env directly in src/ — always import from @/env. Exception: scripts/ directory.
+
+### Feature-driven layout
+
+Source is split into two top-level dirs under `src/`:
+
+- **`src/shared/`** — cross-cutting code; **never** imports from `src/features/`
+  - `shared/components/ui/` — shadcn/ui primitives
+  - `shared/components/layout/` — Navbar, Footer, Logo, SectionHeading, etc.
+  - `shared/lib/` — utils, fonts, seo, structured-data
+  - `shared/db/` — Drizzle client and schema
+
+- **`src/features/`** — vertical slices; each feature owns its components, lib, hooks, data
+  - `features/auth/` — sign-in, sign-up, forgot-password, SSO callback components
+  - `features/marketing/` — Hero, Contact, PdfUpload components + submitContactForm + contact validation
+  - `features/account/` — Profile components + profile validation
+  - `features/rag/` — embeddings, searchRAG, chunking, documents data
+  - `features/chat/` — chat widget
+  - `features/admin/` — usePdfUpload hook, jira lib
+
+Use `@/shared/...` and `@/features/...` import paths via the `@/*` → `./src/*` alias.

@@ -15,16 +15,23 @@ for (const line of envContent.split("\n")) {
   env[key] = val
 }
 
-const { JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, JIRA_PROJECT_KEY } = env
+const { JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, JIRA_PROJECT_KEY, ANTHROPIC_API_KEY } = env
 
 if (!JIRA_BASE_URL || !JIRA_EMAIL || !JIRA_API_TOKEN || !JIRA_PROJECT_KEY) {
   console.error("Missing Jira env vars. Check your .env file.")
   process.exit(1)
 }
 
+if (!ANTHROPIC_API_KEY) {
+  console.error("Missing ANTHROPIC_API_KEY. Check your .env file.")
+  process.exit(1)
+}
+
 const epicKey = process.argv[2]
-if (!epicKey) {
-  console.error("Usage: node scripts/create-jira-stories.mjs <epic-key>")
+const epicName = process.argv[3]
+
+if (!epicKey || !epicName) {
+  console.error("Usage: node scripts/create-jira-stories.mjs <epic-key> \"<epic-name>\"")
   process.exit(1)
 }
 
@@ -68,56 +75,58 @@ function makeDescription(criteria) {
   }
 }
 
-const stories = [
+async function generateStories(epicKey, epicName) {
+  console.log("Generating stories with Claude AI...\n")
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-6",
+      max_tokens: 2048,
+      messages: [
+        {
+          role: "user",
+          content: `You are a product manager creating Jira User Stories for an English tutoring app called FluentStack.
+
+Project context:
+- App: FluentStack — English tutoring platform for Polish students
+- Users: maturzyści (students preparing for Polish high school English exam), programmers learning Business English
+- The app includes a marketing website, booking system, student dashboard, and AI-powered chatbot exercises
+
+Epic: ${epicKey} — "${epicName}"
+
+Generate 5-6 User Stories for this epic. Each story must follow the format:
+"As a [user], I want to [action] so that [benefit]"
+
+Each story must have exactly 3 acceptance criteria in Given/When/Then format.
+
+Return ONLY a valid JSON array with no markdown, no explanation, no code blocks:
+[
   {
-    summary: "As a visitor, I want to see a compelling hero section so that I immediately understand the value of the tutoring service",
-    criteria: [
-      "Given I land on the homepage, when I view the hero section, then I see a clear headline communicating the service value",
-      "When I view the hero, then I see a prominent call-to-action button to book or contact",
-      "When I view the hero on mobile, then the layout is readable and the CTA is accessible",
-    ],
-  },
-  {
-    summary: "As a visitor, I want to read about the teacher's background and credentials so that I can decide if they are the right fit for me",
-    criteria: [
-      "Given I scroll the landing page, when I reach the About section, then I see the teacher's photo, bio, and qualifications",
-      "When I read the bio, then I can see relevant experience (years teaching, student types, certifications)",
-      "When I view on mobile, then the layout stacks cleanly without overflowing",
-    ],
-  },
-  {
-    summary: "As a visitor, I want to see pricing information so that I can evaluate if the service fits my budget",
-    criteria: [
-      "Given I browse the landing page, when I reach the pricing section, then I see at least one clearly labeled price or package",
-      "When I view pricing, then I understand what is included in each option",
-      "When pricing is displayed, then there is a CTA button linking to booking or contact",
-    ],
-  },
-  {
-    summary: "As a visitor, I want to fill out a contact form so that I can ask questions before booking a lesson",
-    criteria: [
-      "Given I want to inquire, when I fill in name, email, and message and submit, then I receive a confirmation that my message was sent",
-      "When I submit with missing required fields, then I see inline validation errors",
-      "When the form is submitted successfully, then the admin receives the inquiry via email or notification",
-    ],
-  },
-  {
-    summary: "As a visitor, I want to read testimonials from past students so that I can trust the quality of the tutoring",
-    criteria: [
-      "Given I browse the landing page, when I reach the testimonials section, then I see at least 3 student reviews",
-      "When I read a testimonial, then I see the student's name and optionally their role or context (e.g. 'maturzysta', 'software developer')",
-      "When I view on mobile, then testimonials are legible without horizontal scrolling",
-    ],
-  },
-  {
-    summary: "As a visitor, I want to see what topics and lesson formats are offered so that I know what to expect before signing up",
-    criteria: [
-      "Given I browse the landing page, when I reach the offerings section, then I see a list of lesson types or topics covered",
-      "When I read the offerings, then I can distinguish between lesson types (e.g. matura prep vs. Business English)",
-      "When I view on mobile, then the offering cards or list items are clearly separated and readable",
-    ],
-  },
-]
+    "summary": "As a ...",
+    "criteria": ["Given ...", "When ...", "Then ..."]
+  }
+]`,
+        },
+      ],
+    }),
+  })
+
+  if (!res.ok) {
+    const error = await res.text()
+    throw new Error(`Anthropic API error ${res.status}: ${error}`)
+  }
+
+  const data = await res.json()
+  const text = data.content[0].text.trim()
+  return JSON.parse(text)
+}
+
+const stories = await generateStories(epicKey, epicName)
 
 console.log(`Creating ${stories.length} stories for epic ${epicKey}...\n`)
 

@@ -1,9 +1,10 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { getLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
-import { fontsClassName } from "@/lib/fonts";
-import { Toaster } from "@/components/ui/sonner";
+import { SITE_URL, SITE_NAME } from "@/shared/lib/seo";
+import { fontsClassName } from "@/shared/lib/fonts";
+import { Toaster } from "@/shared/components/ui/sonner";
+import { env } from "@/env";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+  ...(env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
     : {}),
   openGraph: {
     type: "website",

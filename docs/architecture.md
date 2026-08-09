@@ -37,6 +37,27 @@ src/proxy.ts handles Clerk token validation and i18n routing only.
 Route protection is done in each route group's layout.tsx — never in middleware.
 See /docs/auth.md for protection patterns.
 
+## Environment Variables
+
+All env variables validated at build time via @t3-oss/env-core. Schema in src/env.ts.
+
+Never use process.env in application code.
+Always import: import { env } from "@/env"
+
+Server vars: DATABASE_URL, CLERK_SECRET_KEY,
+OPENAI_API_KEY, RESEND_API_KEY, JIRA_*
+
+Client vars (NEXT_PUBLIC_): APP_URL,
+CLERK_PUBLISHABLE_KEY, CLERK_SIGN_IN_URL,
+CLERK_SIGN_UP_URL, CLERK_AFTER_SIGN_IN_URL,
+CLERK_AFTER_SIGN_UP_URL, SITE_URL (optional),
+GOOGLE_SITE_VERIFICATION (optional)
+
+When adding new env var:
+1. Add to .env
+2. Add to src/env.ts schema
+3. Use env.YOUR_VAR — never process.env
+
 ## Key Rules
 
 - Never import from a feature folder into another feature folder.

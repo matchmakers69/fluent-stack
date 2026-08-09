@@ -6,6 +6,11 @@
       "sourceType": "github",
       "skillPath": "skills/frontend-design/SKILL.md",
       "computedHash": "4eabc66183767153e404b39d1b839b1c37f2d82d86f0a0d7e880a579d8d62336"
+    "plan-feature-driven-refactor": {
+      "source": "jjxmonster/skills",
+      "sourceType": "github",
+      "skillPath": "skills/plan-feature-driven-refactor/SKILL.md",
+      "computedHash": "3eab1f2c4414de9911dae20866184bdce492cd05b1cd1eb6f0e7b99d130e3ae6"
     }
   }
 }

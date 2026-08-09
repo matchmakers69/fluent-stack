@@ -1,4 +1,4 @@
-import { submitContactForm } from "@/lib/submitContactForm";
+import { submitContactForm } from "@/features/marketing/lib/submitContactForm";
 
 export async function POST(request: Request) {
   try {

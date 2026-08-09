@@ -1,4 +1,4 @@
-import { PdfUpload } from "@/components/marketing";
+import { PdfUpload } from "@/features/marketing/components/PdfUpload";
 
 export default function UploadsPage() {
   return (

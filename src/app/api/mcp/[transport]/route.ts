@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js"
 import { z } from "zod"
-import { jiraFetch, jiraConfig } from "@/lib/jira"
+import { jiraFetch, jiraConfig } from "@/features/admin/lib/jira"
 
 function createServer() {
   const server = new McpServer({

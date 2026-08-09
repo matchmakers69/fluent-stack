@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/lib/seo";
-import { courseSchema } from "@/lib/structured-data";
-import type { SupportedLocale } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitterCard, buildCanonicalUrl } from "@/shared/lib/seo";
+import { courseSchema } from "@/shared/lib/structured-data";
+import type { SupportedLocale } from "@/shared/lib/seo";
 
 type Params = Promise<{ locale: string }>;
 

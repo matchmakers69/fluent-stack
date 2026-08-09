@@ -50,6 +50,9 @@ Example:
 Example:
 /create-stories SCRUM-5 "Marketing & Landing Page"
 
+> Stories are generated dynamically by Claude AI based on
+> epic name and project context. No hardcoded content.
+
 ### Create Epics only (via Claude Code)
 "Create epics in Jira for project SCRUM using credentials 
 from .env. Epics: [list them]"

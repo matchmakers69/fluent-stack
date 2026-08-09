@@ -1,7 +1,7 @@
 "use server";
 
-import { submitContactForm } from "@/lib/submitContactForm";
-import { serverContactSchema } from "@/lib/validations/contact";
+import { submitContactForm } from "@/features/marketing/lib/submitContactForm";
+import { serverContactSchema } from "@/features/marketing/lib/validations/contact";
 
 function escapeHtml(text: string): string {
   return text
