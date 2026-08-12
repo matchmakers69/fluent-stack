@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AboutHero } from "@/features/marketing/components/AboutHero";
 import { buildAlternates, buildOpenGraph, buildTwitterCard } from "@/shared/lib/seo";
 import type { SupportedLocale } from "@/shared/lib/seo";
 
@@ -44,5 +45,5 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default function AboutMePage() {
-  return <h1>O mnie</h1>;
+  return <AboutHero />;
 }

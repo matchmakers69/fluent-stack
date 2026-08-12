@@ -19,7 +19,9 @@
     "sliderLabel": "Specjaliści od angielskiego"
   },
   "about": {
-    "title": "O mnie"
+    "title": "O mnie",
+    "intro": "Jestem lektorem angielskiego online. Pomagam maturzystom, programistom i osobom uczącym się Business English oraz przygotowującym się do egzaminów Cambridge.",
+    "cta": "Umów konsultację"
   },
   "booking": {
     "title": "Umów konsultację"

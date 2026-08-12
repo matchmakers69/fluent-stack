@@ -19,7 +19,9 @@
     "sliderLabel": "British English Specialists"
   },
   "about": {
-    "title": "About me"
+    "title": "About me",
+    "intro": "I'm an online English teacher. I help Matura students, developers, and learners focused on Business English or Cambridge exam prep.",
+    "cta": "Book a consultation"
   },
   "booking": {
     "title": "Book a consultation"
